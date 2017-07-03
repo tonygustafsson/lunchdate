@@ -1,0 +1,8 @@
+.PlacesListItem {
+    float: left;
+    width: 25%;
+}
+
+.place-logo {
+    width: 100%;
+}
