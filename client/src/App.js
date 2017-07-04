@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import BookList from './Components/BookList/BookList.js';
-import Dates from './Components/Dates/Dates.js';
-import Places from './Components/Places/Places.js';
+import BookList from './components/BookList/BookList.js';
+import Dates from './components/Dates/Dates.js';
+import Places from './components/Places/Places.js';
+
+import TestContainer from './containers/TestContainer.js';
+
+import Footer from './components/Footer'
+import AddTodo from './containers/AddTodo'
+import VisibleTodoList from './containers/VisibleTodoList'
 
 class App extends Component {
   constructor(props) {
@@ -26,6 +32,8 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
 
+        <TestContainer text="mongoloid" />
+
         <Dates />
 
         <hr />
@@ -33,6 +41,10 @@ class App extends Component {
         <Places />
 
         <BookList />
+
+        <AddTodo />
+        <VisibleTodoList />
+        <Footer />
       </div>
     );
   }
