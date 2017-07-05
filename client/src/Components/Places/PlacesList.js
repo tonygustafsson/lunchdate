@@ -1,33 +1,24 @@
-import React, { Component } from 'react';
-import PlacesListItem from './PlacesListItem.js';
+import React from 'react';
 import './PlacesList.css';
 
-class PlacesList extends Component {
-  constructor(props) {
-    super(props);
+const PlacesList = ({ places, removePlace, loading }) => {
+  return (
+    <div className="PlacesList">
+      <h2>Places</h2>
 
-    this.state = {
-
-    };
-  }
-
-  componentDidMount() {
-
-  }
-
-  render() {
-    return (
-      <div className="PlacesList">
-        <h2>Places</h2>
-
-        <ul>
-          {this.props.places.map((place) => {
-              return <PlacesListItem key={place.key} place={place} removePlace={this.props.removePlace} />
-          })}
-        </ul>
-      </div>
-    );
-  }
+      <ul>
+        {typeof places !== "undefined" && places.map((place) => {
+          return (
+            <li className="PlacesListItem">
+              <img src={process.env.PUBLIC_URL + "/img/places/" + place.identifier + ".png"} alt={place.name + " logo"} className="place-logo" />
+              {place.name}
+              <a onClick={() => removePlace(place.key)}> [del]</a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
 
 export default PlacesList;

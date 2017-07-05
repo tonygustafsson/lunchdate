@@ -56,6 +56,11 @@ app.post('/lunchdate/place/create', function (req, res) {
 	var placeName = req.body.name,
 		identifier = placeName.toLowerCase().replace(/[^a-z0-9]/gi,'');
 
+	if (placeName === "" || identifier === "") {
+		res.status(500).send('The place name cannot be an empty value.');
+		return;
+	}
+
 	r.table(placeTable)
 		.insert([
 			{ name: placeName, identifier: identifier }

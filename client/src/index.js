@@ -5,14 +5,17 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import todoApp from './reducers';
+import { createStore, applyMiddleware, compose } from 'redux';
+import reducers from './reducers';
 import thunk from 'redux-thunk';
 
-let store = createStore(
-    todoApp,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(thunk)
+const store = createStore(
+    reducers,
+    {},
+    compose(
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
 );
 
 ReactDOM.render(

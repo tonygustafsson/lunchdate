@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import BookList from './components/BookList/BookList.js';
 import Dates from './components/Dates/Dates.js';
-import Places from './components/Places/Places.js';
+import { PlacesListComponent, PlaceCreateComponent } from './containers/Places';
 
 import TestContainer from './containers/TestContainer.js';
 
@@ -32,13 +32,16 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
 
-        <TestContainer text="mongoloid" />
+        <TestContainer />
 
         <Dates />
 
         <hr />
 
-        <Places />
+        <PlaceCreateComponent />
+        <PlacesListComponent />
+
+        <hr />
 
         <BookList />
 
