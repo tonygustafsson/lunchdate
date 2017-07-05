@@ -5,10 +5,8 @@ const initState = {
 };
 
 const placesReducer = (state = initState, action) => {
-  console.log('Reached reducer', action);
-
   switch (action.type) {
-    case 'DONE_LOADING_PLACES':
+    case 'PLACES_LIST_DONE':
       return { ...state, loading: false, list: action.payload };
     case 'CHANGE_NEW_PLACE_NAME':
       return { ...state, newPlaceName: action.payload }

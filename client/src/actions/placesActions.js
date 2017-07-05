@@ -1,5 +1,49 @@
-export const loadPlaces = (dispatch) => {
-    console.log('Hey from action loadPlaces');
+export const placesListStart = () => {
+    return {
+        type: 'PLACES_LIST_START'
+    };
+};
+
+export const placesListDone = places => {
+    return {
+        type: 'PLACES_LIST_DONE',
+        payload: places
+    };
+};
+
+export const changeNewPlaceName = newName => {
+    return {
+        type: 'CHANGE_NEW_PLACE_NAME',
+        payload: newName
+    };
+};
+
+export const beginSaveNewPlace = () => {
+    return {
+        type: 'BEGIN_SAVE_NEW_PLACE'
+    };
+};
+
+export const doneSaveNewPlace = () => {
+    return {
+        type: 'DONE_SAVE_NEW_PLACE',
+    };
+};
+
+export const beginRemovePlace = () => {
+    return {
+        type: 'BEGIN_REMOVE_PLACE'
+    };
+};
+
+export const doneRemovePlace = () => {
+    return {
+        type: 'DONE_REMOVE_PLACE',
+    };
+};
+
+export const placesListAjaxGet = (dispatch) => {
+    dispatch(placesListStart());
 
     fetch('http://localhost:3000/lunchdate/place/list')
         .then((response) => response.json())
@@ -14,35 +58,12 @@ export const loadPlaces = (dispatch) => {
                 });
             });
 
-            dispatch(doneLoadingPlaces(places));
+            dispatch(placesListDone(places));
+        })
+        .catch((error) => {
+            throw (error);
         });
-}
-
-export const doneLoadingPlaces = places => {
-    return {
-        type: 'DONE_LOADING_PLACES',
-        payload: places
-    }
-}
-
-export const changeNewPlaceName = newName => {
-    return {
-        type: 'CHANGE_NEW_PLACE_NAME',
-        payload: newName
-    }
-}
-
-export const beginSaveNewPlace = () => {
-    return {
-        type: 'BEGIN_SAVE_NEW_PLACE'
-    }
-}
-
-export const doneSaveNewPlace = () => {
-    return {
-        type: 'DONE_SAVE_NEW_PLACE',
-    }
-}
+};
 
 export const saveNewPlace = (newPlaceName) => {
     return (dispatch) => {
@@ -71,25 +92,13 @@ export const saveNewPlace = (newPlaceName) => {
                 });
 
                 dispatch(doneSaveNewPlace());
-                dispatch(doneLoadingPlaces(places));
+                dispatch(placesListDone(places));
             })
             .catch((error) => {
                 throw (error);
             });
-    }
-}
-
-export const beginRemovePlace = () => {
-    return {
-        type: 'BEGIN_REMOVE_PLACE'
-    }
-}
-
-export const doneRemovePlace = () => {
-    return {
-        type: 'DONE_REMOVE_PLACE',
-    }
-}
+    };
+};
 
 export const removePlace = id => {
     return (dispatch) => {
@@ -118,10 +127,10 @@ export const removePlace = id => {
                 });
 
                 dispatch(doneRemovePlace());
-                dispatch(doneLoadingPlaces(places));
+                dispatch(placesListDone(places));
             })
             .catch((error) => {
                 throw (error);
             });
-    }
-}
+    };
+};

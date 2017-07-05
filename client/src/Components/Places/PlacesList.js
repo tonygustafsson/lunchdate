@@ -9,7 +9,7 @@ const PlacesList = ({ places, removePlace, loading }) => {
       <ul>
         {typeof places !== "undefined" && places.map((place) => {
           return (
-            <li className="PlacesListItem">
+            <li className="PlacesListItem" key={place.key}>
               <img src={process.env.PUBLIC_URL + "/img/places/" + place.identifier + ".png"} alt={place.name + " logo"} className="place-logo" />
               {place.name}
               <a onClick={() => removePlace(place.key)}> [del]</a>

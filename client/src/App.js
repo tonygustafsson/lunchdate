@@ -5,8 +5,6 @@ import BookList from './components/BookList/BookList.js';
 import Dates from './components/Dates/Dates.js';
 import { PlacesListComponent, PlaceCreateComponent } from './containers/Places';
 
-import TestContainer from './containers/TestContainer.js';
-
 import Footer from './components/Footer'
 import AddTodo from './containers/AddTodo'
 import VisibleTodoList from './containers/VisibleTodoList'
@@ -31,8 +29,6 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-
-        <TestContainer />
 
         <Dates />
 
