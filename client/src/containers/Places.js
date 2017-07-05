@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { placesListAjaxGet, saveNewPlace, removePlace, changeNewPlaceName } from '../actions';
+import { placesListAjaxGet, placesCreateAjaxPost, placesRemoveAjaxPost, placesCreateNewNameChange } from '../actions';
 import PlacesList from '../components/Places/PlacesList';
 import PlaceCreate from '../components/Places/PlaceCreate';
 
@@ -16,7 +16,7 @@ export const PlacesListComponent = connect(
   (dispatch) => {
     return {
       onLoad: dispatch(placesListAjaxGet),
-      removePlace: (id) => { dispatch(removePlace(id)) }
+      placesRemoveAjaxPost: (id) => { dispatch(placesRemoveAjaxPost(id)) }
     };
   }
 )(PlacesList);
@@ -25,7 +25,7 @@ export const PlaceCreateComponent = connect(
   mapStateToProps,
   (dispatch) => {
     return {
-      changeNewPlaceName: (newPlaceName) => { dispatch(changeNewPlaceName(newPlaceName)) },
-      saveNewPlace: (newPlaceName) => { dispatch(saveNewPlace(newPlaceName)) },
+      placesCreateNewNameChange: (newPlaceName) => { dispatch(placesCreateNewNameChange(newPlaceName)) },
+      placesCreateAjaxPost: (newPlaceName) => { dispatch(placesCreateAjaxPost(newPlaceName)) },
     };
   })(PlaceCreate);

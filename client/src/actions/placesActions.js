@@ -11,35 +11,51 @@ export const placesListDone = places => {
     };
 };
 
-export const changeNewPlaceName = newName => {
+export const placesCreateNewNameChange = newName => {
     return {
-        type: 'CHANGE_NEW_PLACE_NAME',
+        type: 'PLACES_CREATE_NEW_NAME_CHANGE',
         payload: newName
     };
 };
 
-export const beginSaveNewPlace = () => {
+export const placesCreateBegin = () => {
     return {
-        type: 'BEGIN_SAVE_NEW_PLACE'
+        type: 'PLACES_CREATE_BEGIN'
     };
 };
 
-export const doneSaveNewPlace = () => {
+export const placesCreateDone = () => {
     return {
-        type: 'DONE_SAVE_NEW_PLACE',
+        type: 'PLACES_CREATE_DONE',
     };
 };
 
-export const beginRemovePlace = () => {
+export const placesRemoveStart = () => {
     return {
-        type: 'BEGIN_REMOVE_PLACE'
+        type: 'PLACES_REMOVE_START'
     };
 };
 
-export const doneRemovePlace = () => {
+export const placesRemoveDone = () => {
     return {
-        type: 'DONE_REMOVE_PLACE',
+        type: 'PLACES_REMOVE_DONE',
     };
+};
+
+export const placesUpdateList = (responseJson) => {
+    return () => {
+        var places = [];
+
+        responseJson.forEach(place => {
+            places.push({
+                'key': place.id,
+                'name': place.name,
+                'identifier': place.identifier
+            });
+        });
+
+        return places;
+    }
 };
 
 export const placesListAjaxGet = (dispatch) => {
@@ -48,16 +64,7 @@ export const placesListAjaxGet = (dispatch) => {
     fetch('http://localhost:3000/lunchdate/place/list')
         .then((response) => response.json())
         .then((responseJson) => {
-            var places = [];
-
-            responseJson.forEach(place => {
-                places.push({
-                    'key': place.id,
-                    'name': place.name,
-                    'identifier': place.identifier
-                });
-            });
-
+            const places = dispatch(placesUpdateList(responseJson));
             dispatch(placesListDone(places));
         })
         .catch((error) => {
@@ -65,9 +72,9 @@ export const placesListAjaxGet = (dispatch) => {
         });
 };
 
-export const saveNewPlace = (newPlaceName) => {
+export const placesCreateAjaxPost = (newPlaceName) => {
     return (dispatch) => {
-        dispatch(beginSaveNewPlace());
+        dispatch(placesCreateBegin());
 
         fetch('http://localhost:3000/lunchdate/place/create', {
             method: 'POST',
@@ -81,17 +88,8 @@ export const saveNewPlace = (newPlaceName) => {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                var places = [];
-
-                responseJson.forEach(place => {
-                    places.push({
-                        'key': place.id,
-                        'name': place.name,
-                        'identifier': place.identifier
-                    });
-                });
-
-                dispatch(doneSaveNewPlace());
+                const places = dispatch(placesUpdateList(responseJson));
+                dispatch(placesCreateDone());
                 dispatch(placesListDone(places));
             })
             .catch((error) => {
@@ -100,9 +98,9 @@ export const saveNewPlace = (newPlaceName) => {
     };
 };
 
-export const removePlace = id => {
+export const placesRemoveAjaxPost = id => {
     return (dispatch) => {
-        dispatch(beginRemovePlace());
+        dispatch(placesRemoveStart());
 
         fetch('http://localhost:3000/lunchdate/place/remove', {
             method: 'POST',
@@ -116,17 +114,8 @@ export const removePlace = id => {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                var places = [];
-
-                responseJson.forEach(place => {
-                    places.push({
-                        'key': place.id,
-                        'name': place.name,
-                        'identifier': place.identifier
-                    });
-                });
-
-                dispatch(doneRemovePlace());
+                const places = dispatch(placesUpdateList(responseJson));
+                dispatch(placesRemoveDone());
                 dispatch(placesListDone(places));
             })
             .catch((error) => {
