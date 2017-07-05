@@ -5,23 +5,7 @@ import BookList from './components/BookList/BookList.js';
 import Dates from './components/Dates/Dates.js';
 import { PlacesListComponent, PlaceCreateComponent } from './containers/Places';
 
-import Footer from './components/Footer'
-import AddTodo from './containers/AddTodo'
-import VisibleTodoList from './containers/VisibleTodoList'
-
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    };
-  }
-
-  componentDidMount() {
-
-  }
-
   render() {
     return (
       <div className="App">
@@ -40,10 +24,6 @@ class App extends Component {
         <hr />
 
         <BookList />
-
-        <AddTodo />
-        <VisibleTodoList />
-        <Footer />
       </div>
     );
   }
