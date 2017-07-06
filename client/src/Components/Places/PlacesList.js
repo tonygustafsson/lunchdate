@@ -1,5 +1,4 @@
 import React from 'react';
-import './PlacesList.css';
 
 const PlacesList = ({ places, placesRemoveAjaxPost, loading }) => {
   return (
