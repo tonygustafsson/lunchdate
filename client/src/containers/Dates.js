@@ -7,6 +7,7 @@ import './Dates.css';
 const mapStateToProps = (state, ownProps) => {
   return {
     dates: state.dates.list,
+    places: state.places.list,
     loading: state.dates.loading,
     newDateData: state.dates.newDateData
   };
