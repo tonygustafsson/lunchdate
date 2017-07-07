@@ -1,3 +1,5 @@
+const apiUrl = 'http://localhost:8080/lunchdate/place';
+
 export const placesListStart = () => {
     return {
         type: 'PLACES_LIST_START'
@@ -61,7 +63,7 @@ export const placesUpdateList = (responseJson) => {
 export const placesListAjaxGet = (dispatch) => {
     dispatch(placesListStart());
 
-    fetch('http://localhost:3000/lunchdate/place/list')
+    fetch(apiUrl + '/list')
         .then((response) => response.json())
         .then((responseJson) => {
             const places = dispatch(placesUpdateList(responseJson));
@@ -76,7 +78,7 @@ export const placesCreateAjaxPost = (newPlaceName) => {
     return (dispatch) => {
         dispatch(placesCreateBegin());
 
-        fetch('http://localhost:3000/lunchdate/place/create', {
+        fetch(apiUrl + '/create', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -102,7 +104,7 @@ export const placesRemoveAjaxPost = id => {
     return (dispatch) => {
         dispatch(placesRemoveStart());
 
-        fetch('http://localhost:3000/lunchdate/place/remove', {
+        fetch(apiUrl + '/remove', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

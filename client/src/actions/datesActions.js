@@ -1,3 +1,5 @@
+const apiUrl = 'http://localhost:8080/lunchdate/date';
+
 export const datesListStart = () => {
     return {
         type: 'DATES_LIST_START'
@@ -65,7 +67,7 @@ export const datesUpdateList = (responseJson) => {
 export const datesListAjaxGet = (dispatch) => {
     dispatch(datesListStart());
 
-    fetch('http://localhost:3000/lunchdate/date/list')
+    fetch(apiUrl + '/list')
         .then((response) => response.json())
         .then((responseJson) => {
             const dates = dispatch(datesUpdateList(responseJson));
@@ -80,7 +82,7 @@ export const datesCreateAjaxPost = (newDate) => {
     return (dispatch) => {
         dispatch(datesCreateBegin());
 
-        fetch('http://localhost:3000/lunchdate/date/create', {
+        fetch(apiUrl + '/create', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -110,7 +112,7 @@ export const datesRemoveAjaxPost = id => {
     return (dispatch) => {
         dispatch(datesRemoveStart());
 
-        fetch('http://localhost:3000/lunchdate/date/remove', {
+        fetch(apiUrl + '/remove', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

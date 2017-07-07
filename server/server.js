@@ -11,23 +11,25 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.listen(3000, function () {
+const clientUrl = 'http://localhost:3000'; // For CORS
+
+app.listen(8080, function () {
 	console.log('Starting web server');
 });
-
-
-/* ------------------ LUNCH DATE ------------------*/
 
 var connection = null,
 	placeTable = 'places',
 	dateTable = 'dates';
 
+// Connect to DB
 r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
 	if (err) throw err;
 
 	connection = conn;
 	connection.use('lunchdate');
 });
+
+/* Places */
 
 function lunchDatePlaceList(res) {
 	r.table(placeTable)
@@ -44,13 +46,13 @@ function lunchDatePlaceList(res) {
 }
 
 app.get('/lunchdate/place/list', function (req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+    res.header('Access-Control-Allow-Origin', clientUrl);
 
 	lunchDatePlaceList(res);
 });
 
 app.post('/lunchdate/place/create', function (req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+    res.header('Access-Control-Allow-Origin', clientUrl);
     res.header('Access-Control-Allow-Methods', 'POST');
 
 	var placeName = req.body.name,
@@ -72,7 +74,7 @@ app.post('/lunchdate/place/create', function (req, res) {
 });
 
 app.post('/lunchdate/place/remove', function (req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+    res.header('Access-Control-Allow-Origin', clientUrl);
     res.header('Access-Control-Allow-Methods', 'POST');
 
 	var id = req.body.id;
@@ -101,14 +103,16 @@ function lunchDateTodaysDatesList(res) {
 	});
 }
 
+/* Dates */
+
 app.get('/lunchdate/date/list', function (req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+    res.header('Access-Control-Allow-Origin', clientUrl);
 
 	lunchDateTodaysDatesList(res);
 });
 
 app.post('/lunchdate/date/create', function (req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+    res.header('Access-Control-Allow-Origin', clientUrl);
     res.header('Access-Control-Allow-Methods', 'POST');
 
 	var time = req.body.time,
@@ -128,7 +132,7 @@ app.post('/lunchdate/date/create', function (req, res) {
 });
 
 app.post('/lunchdate/date/remove', function (req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+    res.header('Access-Control-Allow-Origin', clientUrl);
     res.header('Access-Control-Allow-Methods', 'POST');
 
 	var id = req.body.id;
@@ -140,129 +144,6 @@ app.post('/lunchdate/date/remove', function (req, res) {
 		if (err) throw err;
 
 		lunchDateTodaysDatesList(res);
-	});
-});
-
-/* --------------------- BOOKS ---------------------*/
-
-app.get('/list-books', function (req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
-
-	var connection = null;
-
-	r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
-		if (err) throw err;
-		connection = conn;
-
-		r.table('authors').orderBy('name').run(connection, function(err, cursor) {
-			if (err) throw err;
-
-			cursor.toArray(function(err, result) {
-				if (err) throw err;
-
-				res.send(JSON.stringify(result, null, 2));
-			});
-		});
-	});
-});
-
-app.post('/save-book', function (req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
-    res.header('Access-Control-Allow-Methods', 'POST');
-
-	var connection = null;
-
-	r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
-		if (err) throw err;
-		connection = conn;
-
-		var newBookName = req.body.bookName;
-
-		r.table('authors').insert([
-			{ name: newBookName, tv_show: "Battlestar Galactica",
-			posts: [
-					{title: "Decommissioning speech", content: "The Cylon War is long over..."},
-					{title: "The new Earth", content: "The discoveries of the past few days..."}
-				]
-			}
-		]).run(connection, function(err, result) {
-			if (err) throw err;
-			console.log(JSON.stringify(result, null, 2));
-
-			r.table('authors').orderBy('name').run(connection, function(err, cursor) {
-				if (err) throw err;
-
-				cursor.toArray(function(err, result) {
-					if (err) throw err;
-
-					res.send(JSON.stringify(result, null, 2));
-				});
-			});
-		})
-	});
-});
-
-app.post('/edit-book', function (req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
-    res.header('Access-Control-Allow-Methods', 'POST');
-
-	var connection = null;
-
-	r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
-		if (err) throw err;
-		connection = conn;
-
-		var id = req.body.id;
-		var newBookName = req.body.bookName;
-
-		r.table('authors').get(id)
-		.update({
-			"name": newBookName
-		})
-		.run(connection, function(err, result) {
-			if (err) throw err;
-			console.log(JSON.stringify(result, null, 2));
-
-			r.table('authors').orderBy('name').run(connection, function(err, cursor) {
-				if (err) throw err;
-
-				cursor.toArray(function(err, result) {
-					if (err) throw err;
-
-					res.send(JSON.stringify(result, null, 2));
-				});
-			});
-		})
-	});
-});
-
-app.post('/remove-book', function (req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
-    res.header('Access-Control-Allow-Methods', 'POST');
-
-	var connection = null;
-
-	r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
-		if (err) throw err;
-		connection = conn;
-
-		var id = req.body.id;
-
-		r.table('authors').get(id).delete()
-		.run(connection, function(err, result) {
-			if (err) throw err;
-			console.log(JSON.stringify(result, null, 2));
-
-			r.table('authors').orderBy('name').run(connection, function(err, cursor) {
-				if (err) throw err;
-
-				cursor.toArray(function(err, result) {
-					if (err) throw err;
-
-					res.send(JSON.stringify(result, null, 2));
-				});
-			});
-		})
 	});
 });
 
