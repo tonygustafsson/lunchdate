@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Dates from './components/Dates/Dates.js';
 import { PlacesListComponent, PlaceCreateComponent } from './containers/Places';
+import { DatesListComponent, DatesCreateComponent } from './containers/Dates';
 
 class App extends Component {
   render() {
@@ -12,7 +12,8 @@ class App extends Component {
           <h2>Lunch date</h2>
         </div>
 
-        <Dates />
+        <DatesCreateComponent />
+        <DatesListComponent />
 
         <hr />
 
