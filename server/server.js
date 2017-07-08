@@ -89,6 +89,8 @@ app.post('/lunchdate/place/remove', function (req, res) {
 	});
 });
 
+/* Dates */
+
 function lunchDateTodaysDatesList(res) {
 	r.table(dateTable)
 		.orderBy('time')
@@ -102,8 +104,6 @@ function lunchDateTodaysDatesList(res) {
 			});
 	});
 }
-
-/* Dates */
 
 app.get('/lunchdate/date/list', function (req, res) {
     res.header('Access-Control-Allow-Origin', clientUrl);

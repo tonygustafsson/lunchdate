@@ -1,24 +1,25 @@
 import React from 'react';
+import { DataTable, TableHeader, Tooltip } from 'react-mdl';
 
 const DatesList = ({ dates, datesCreateAjaxPost, datesRemoveAjaxPost, newDateData }) => {
   return (
     <div className="DatesList">
       <h2>Dates</h2>
 
-      <ul className="DatesList">
-        {typeof dates !== "undefined" && dates.map((date) => {
-          return (
-            <li className="DateListItem" key={date.key}>
-              Time: {date.time}<br />
-              User: {date.user}<br />
-              Place: {date.place}<br />
-              TakeAway: {date.takeaway ? 'Yes' : 'No'}<br />
-              Note: {date.note ? date.note : ''}<br />
-              <a onClick={() => datesRemoveAjaxPost(date.key)}> [del]</a>
-            </li>
-          );
-        })}
-      </ul>
+      <DataTable shadow={0} rows={
+        dates.map(function (date) {
+          date.takeaway = date.takeaway ? 'Yes' : 'No';
+          date.operations = <Tooltip label="Delete"><i className="material-icons" onClick={() => datesRemoveAjaxPost(date.key)}>delete</i></Tooltip>;
+          return date;
+        })
+      }>
+        <TableHeader name="time" tooltip="When to have lunch">Time</TableHeader>
+        <TableHeader name="user" tooltip="The host">User</TableHeader>
+        <TableHeader name="place" tooltip="The place to eat / take away from">Place</TableHeader>
+        <TableHeader name="takeaway" tooltip="Is the plan to eat there or take away?">TakeAway</TableHeader>
+        <TableHeader name="note" tooltip="Anything more?">Note</TableHeader>
+        <TableHeader name="operations" tooltip="Manage this date">Operations</TableHeader>
+      </DataTable>
     </div>
   );
 }

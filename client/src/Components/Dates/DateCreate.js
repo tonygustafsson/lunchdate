@@ -1,4 +1,5 @@
 import React from 'react';
+import { Textfield, Button, Switch } from 'react-mdl';
 
 const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData, places }) => {
   return (
@@ -6,11 +7,8 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
       <h2>Create new date</h2>
 
       <form method="post" onSubmit={e => { e.preventDefault(); datesCreateAjaxPost(newDateData) }}>
-        <label htmlFor="newDateTime">Time</label>
-        <input type="text" id="newDateTime" name="newDateTime" value={newDateData.dateTime} onChange={e => { datesCreateNewDataChange('dateTime', e.target.value) }} />
-
-        <label htmlFor="newDateUser">User</label>
-        <input type="text" id="newDateUser" name="newDateUser" value={newDateData.dateUser} onChange={e => { datesCreateNewDataChange('dateUser', e.target.value) }} />
+        <Textfield label="Time" id="newDateTime" name="newDateTime" value={newDateData.dateTime} onChange={e => { datesCreateNewDataChange('dateTime', e.target.value) }} />
+        <Textfield label="Your name" id="newDateUser" name="newDateUser" value={newDateData.dateUser} onChange={e => { datesCreateNewDataChange('dateUser', e.target.value) }} />
 
         <label htmlFor="newDatePlace">Place</label>
         <select name="newDatePlace" id="newDatePlace" value={newDateData.datePlace} onChange={e => { datesCreateNewDataChange('datePlace', e.target.value) }}>
@@ -21,13 +19,13 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
           })}
         </select>
 
-        <label htmlFor="newDateTakeAway">Takeaway</label>
-        <input type="checkbox" id="newDateTakeAway" name="newDateTakeAway" checked={newDateData.dateTakeAway} onChange={e => { datesCreateNewDataChange('dateTakeAway', e.target.checked) }} />
+        <Switch ripple id="newDateTakeAway" name="newDateTakeAway" checked={newDateData.dateTakeAway} onChange={e => { datesCreateNewDataChange('dateTakeAway', e.target.checked) }}>
+          TakeAway
+        </Switch>
 
-        <label htmlFor="newDateNote">Note</label>
-        <input type="text" id="newDateNote" name="newDateNote" value={newDateData.dateNote} onChange={e => { datesCreateNewDataChange('dateNote', e.target.value) }} />
+        <Textfield label="Note" id="newDateNote" name="newDateNote" value={newDateData.dateNote} onChange={e => { datesCreateNewDataChange('dateNote', e.target.value) }} />
 
-        <input type="submit" value="Save" />
+        <Button raised type="submit">Save</Button>
       </form>
     </div>
   );
