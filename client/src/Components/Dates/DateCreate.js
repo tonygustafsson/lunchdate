@@ -14,7 +14,7 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
         <select name="newDatePlace" id="newDatePlace" value={newDateData.datePlace} onChange={e => { datesCreateNewDataChange('datePlace', e.target.value) }}>
           {typeof places !== "undefined" && places.map((place) => {
             return (
-              <option key={place.key} value={place.identifier}>{place.name}</option>
+              <option key={place.key} value={place.name}>{place.name}</option>
             );
           })}
         </select>

@@ -10,19 +10,14 @@ import { DatesListComponent, DatesCreateComponent } from './containers/Dates';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={process.env.PUBLIC_URL + "/img/logo.svg"} alt="logo" className="App-logo" />
-          <h2>Lunch date</h2>
-        </div>
+        <div className="App">
+          <h1 className="pageHeader">Lunch date</h1>
 
-        <DatesCreateComponent />
-        <DatesListComponent />
+          <DatesCreateComponent />
+          <DatesListComponent />
 
-        <hr />
-
-        <PlaceCreateComponent />
-        <PlacesListComponent />
+          <PlaceCreateComponent />
+          <PlacesListComponent />
       </div>
     );
   }
