@@ -8,8 +8,9 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, ne
 
       <DataTable shadow={0} rows={
         dates.map(function (date) {
-          let place = places.find(function(place) { return place.name === date.place; });
-          let placeImagePath = typeof place !== "undefined" && typeof place.identifier !== "undefined" ? process.env.PUBLIC_URL + "/img/places/" + place.identifier + ".png" : "";
+          let place = places.find(function(place) { return place.name === date.place; }),
+              placeImagePath = typeof place !== "undefined" && typeof place.identifier !== "undefined" ? process.env.PUBLIC_URL + "/img/places/" + place.identifier + ".png" : "";
+
           date.placeImage = <img src={placeImagePath} alt="Logo" className="date-place-logo" />
           date.takeaway = date.takeaway ? 'Yes' : 'No';
           date.operations = <div>

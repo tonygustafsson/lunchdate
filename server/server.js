@@ -121,6 +121,11 @@ app.post('/lunchdate/date/create', function (req, res) {
 		takeaway = req.body.takeaway,
 		note = req.body.note;
 
+	if (time === "" || user === "" || place === "") {
+		res.status(500).send('Time, user or place cannot be an empty value.');
+		return;
+	}
+
 	r.table(dateTable)
 		.insert([
 			{ time: time, user: user, place : place, takeaway: takeaway, note: note }
