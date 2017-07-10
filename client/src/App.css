@@ -19,11 +19,16 @@ body {
   text-shadow: 2px 2px 2px #000;
 }
 
-h1, h2, h3 {
+h1, h2 {
   padding: 0 1em;
   text-transform: uppercase;
   color: #fff;
   text-shadow: 2px 2px 2px #000;
+}
+
+h1.black, h2.black {
+  color: #000;
+  text-shadow: none;
 }
 
 body .App h1, body .App h2 {

@@ -11,7 +11,7 @@ const PlaceCreate = ({ placesCreateAjaxPost, newPlaceName, placesCreateNewNameCh
       }}
       >
         <Dialog open={showNewPlaceForm}>
-          <DialogTitle>Create new place</DialogTitle>
+          <DialogTitle><h2 className="black">Create new place</h2></DialogTitle>
           <DialogContent>
             <Textfield label="Place name" name="new-place" value={newPlaceName} onChange={e => { placesCreateNewNameChange(e.target.value) }} /><br />
           </DialogContent>

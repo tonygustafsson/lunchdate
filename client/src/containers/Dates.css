@@ -1,9 +1,13 @@
 .CreatePlaceDate {
-    background: rgba(255,255,255,.5);
+    background: rgba(255,255,255,.7);
     padding: 1em;
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
+}
+
+.DateListList {
+    background: rgba(255,255,255,.7);
 }
 
 .date-place-logo {
@@ -36,4 +40,8 @@
 
 .add-new-place-button {
     float: right;
+}
+
+.date-operation-column {
+    text-align: center;
 }
