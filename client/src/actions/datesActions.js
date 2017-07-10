@@ -108,6 +108,12 @@ export const datesCreateAjaxPost = (newDate) => {
     };
 };
 
+export const datesCreateReset = () => {
+    return {
+        type: 'DATES_CREATE_RESET',
+    };
+};
+
 export const datesRemoveAjaxPost = id => {
     return (dispatch) => {
         dispatch(datesRemoveStart());

@@ -1,13 +1,15 @@
+const initNewDateData = {
+  dateTime: '',
+  dateUser: '',
+  datePlace: '',
+  dateTakeAway: false,
+  dateNote: ''
+}
+
 const initState = {
   list: [],
   loading: true,
-  newDateData: {
-    dateTime: '',
-    dateUser: '',
-    datePlace: '',
-    dateTakeAway: false,
-    dateNote: ''
-  }
+  newDateData: initNewDateData
 };
 
 const datesReducer = (state = initState, action) => {
@@ -30,8 +32,10 @@ const datesReducer = (state = initState, action) => {
         default:
           return state;
       }
+    case 'DATES_CREATE_RESET':
+      return { ...state, newDateData: initNewDateData };
     case 'DATES_CREATE_DONE':
-      return { ...state }
+      return { ...state };
     default:
       return state;
   }

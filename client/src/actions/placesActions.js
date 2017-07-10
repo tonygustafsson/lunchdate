@@ -52,6 +52,7 @@ export const placesUpdateList = (responseJson) => {
             places.push({
                 'key': place.id,
                 'name': place.name,
+                'imageUrl': place.imageUrl,
                 'identifier': place.identifier
             });
         });

@@ -18,7 +18,7 @@ body {
   text-shadow: 2px 2px 2px #000;
 }
 
-h1,h2,h3 {
+h1, h2, h3 {
   padding: 0 1em;
   text-transform: uppercase;
   color: #fff;
@@ -31,6 +31,12 @@ h2 {
 
 .App {
   text-align: center;
+}
+
+.add-new-date {
+  position: fixed !important;
+  right: 1em;
+  bottom: 1em;
 }
 
 .material-icons {

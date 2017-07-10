@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
 import 'react-mdl/extra/material.css';
@@ -7,8 +7,7 @@ import 'react-mdl/extra/material.js';
 import { PlacesListComponent, PlaceCreateComponent } from './containers/Places';
 import { DatesListComponent, DatesCreateComponent } from './containers/Dates';
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
         <div className="App">
           <h1 className="pageHeader">Lunch date</h1>
@@ -20,7 +19,6 @@ class App extends Component {
           <PlacesListComponent />
       </div>
     );
-  }
 }
 
 export default App;

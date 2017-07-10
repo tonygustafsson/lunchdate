@@ -9,7 +9,7 @@ const PlacesList = ({ places, placesRemoveAjaxPost, loading }) => {
         {typeof places !== "undefined" && places.map((place) => {
           return (
             <li className="PlacesListItem" key={place.key}>
-              <img src={process.env.PUBLIC_URL + "/img/places/" + place.identifier + ".png"} alt={place.name + " logo"} className="place-logo" />
+              <img src={place.imageUrl} alt={place.name + " logo"} className="place-logo" />
               {place.name}
               <a onClick={() => placesRemoveAjaxPost(place.key)}> [del]</a>
             </li>

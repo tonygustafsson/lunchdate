@@ -1,7 +1,11 @@
 import React from 'react';
-import { DataTable, TableHeader, Tooltip } from 'react-mdl';
+import { DataTable, TableHeader, Tooltip, FABButton, Icon } from 'react-mdl';
 
-const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, newDateData }) => {
+const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, newDateData, toggleShowNewDateForm, showNewDateForm }) => {
+  if (showNewDateForm) {
+    return null;
+  }
+
   return (
     <div className="DatesList">
       <h2>Todays dates</h2>
@@ -9,9 +13,9 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, ne
       <DataTable shadow={0} rows={
         dates.map(function (date) {
           let place = places.find(function(place) { return place.name === date.place; }),
-              placeImagePath = typeof place !== "undefined" && typeof place.identifier !== "undefined" ? process.env.PUBLIC_URL + "/img/places/" + place.identifier + ".png" : "";
+              placeImageUrl = typeof place !== "undefined" ? place.imageUrl : "";
 
-          date.placeImage = <img src={placeImagePath} alt="Logo" className="date-place-logo" />
+          date.placeImage = <img src={placeImageUrl} alt="Logo" className="date-place-logo" />
           date.takeaway = date.takeaway ? 'Yes' : 'No';
           date.operations = <div>
                               <Tooltip label="Join this date">
@@ -32,6 +36,10 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, ne
         <TableHeader name="note" tooltip="Anything more?">Note</TableHeader>
         <TableHeader name="operations" tooltip="Manage this date">Operations</TableHeader>
       </DataTable>
+
+      <FABButton colored ripple className="add-new-date" onClick={toggleShowNewDateForm}>
+          <Icon name="add" />
+      </FABButton>
     </div>
   );
 }

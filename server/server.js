@@ -37,10 +37,14 @@ function lunchDatePlaceList(res) {
 		.run(connection, function(err, cursor) {
 			if (err) throw err;
 
-			cursor.toArray(function(err, result) {
+			cursor.toArray(function(err, places) {
 				if (err) throw err;
 
-				res.send(JSON.stringify(result, null, 2));
+				places.map(function (place) {
+					place.imageUrl = '/img/places/' + place.identifier + '.png';
+				});
+
+				res.send(JSON.stringify(places, null, 2));
 			});
 	});
 }
