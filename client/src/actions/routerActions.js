@@ -1,7 +1,6 @@
-export const toggleShowNewPlaceForm = (enable) => {
+export const toggleShowNewPlaceForm = () => {
     return {
         type: 'TOGGLE_NEW_PLACE_FORM',
-        payload: enable
     };
 };
 

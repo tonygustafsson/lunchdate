@@ -4,7 +4,6 @@ import './App.css';
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
 
-import { PlacesListComponent, PlaceCreateComponent } from './containers/Places';
 import { DatesListComponent, DatesCreateComponent } from './containers/Dates';
 
 const App = () => {
@@ -14,9 +13,6 @@ const App = () => {
 
           <DatesCreateComponent />
           <DatesListComponent />
-
-          <PlaceCreateComponent />
-          <PlacesListComponent />
       </div>
     );
 }

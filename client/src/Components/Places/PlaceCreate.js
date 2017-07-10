@@ -1,17 +1,25 @@
 import React from 'react';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Icon, Textfield } from 'react-mdl';
 
-const PlaceCreate = ({ placesCreateAjaxPost, newPlaceName, placesCreateNewNameChange }) => {
+const PlaceCreate = ({ placesCreateAjaxPost, newPlaceName, placesCreateNewNameChange, showNewPlaceForm, toggleShowNewPlaceForm }) => {
   return (
     <div className="PlaceCreate">
-      <h2>Create new place</h2>
-
       <form method="post" onSubmit={e => {
         e.preventDefault();
-        placesCreateAjaxPost(newPlaceName)
+        placesCreateAjaxPost(newPlaceName);
+        toggleShowNewPlaceForm();
       }}
       >
-        <input type="text" value={newPlaceName} onChange={e => { placesCreateNewNameChange(e.target.value) }} />
-        <input type="submit" value="Save" />
+        <Dialog open={showNewPlaceForm}>
+          <DialogTitle>Create new place</DialogTitle>
+          <DialogContent>
+            <Textfield label="Place name" name="new-place" value={newPlaceName} onChange={e => { placesCreateNewNameChange(e.target.value) }} /><br />
+          </DialogContent>
+          <DialogActions>
+            <Button raised accent type="submit"><Icon name="save" /> Save</Button>
+            <Button type="button" raised onClick={toggleShowNewPlaceForm}><Icon name="undo" /> Cancel</Button>
+          </DialogActions>
+        </Dialog>
       </form>
     </div>
   );

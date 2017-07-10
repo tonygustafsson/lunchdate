@@ -10,3 +10,10 @@
 .place-logo {
     width: 100%;
 }
+
+.place-delete-icon {
+    display: inline-block;
+    padding-top: 20px;
+    color: #000;
+    padding-right: 6px;
+}

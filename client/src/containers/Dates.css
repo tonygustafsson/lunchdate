@@ -3,16 +3,12 @@
     padding: 1em;
     max-width: 600px;
     margin: 0 auto;
+    padding: 20px;
 }
 
 .date-place-logo {
     width: 100px;
     height: 100px;
-}
-
-.new-date-place-list {
-    width: 80%;
-    margin: 0 10%;
 }
 
 .mdl-list__item {
@@ -21,19 +17,23 @@
     cursor: pointer;
 }
 
+.mdl-textfield {
+    width: 100%;
+}
+
 .create-place-logo {
     padding-right: 10px;
 }
 
 .create-date-switch {
     width: 120px;
-}
-
-.mdl-textfield {
-    width: 80%;
-    margin: 0 10%;
+    float: left;
 }
 
 .mdl-button {
     margin: 10px;
+}
+
+.add-new-place-button {
+    float: right;
 }

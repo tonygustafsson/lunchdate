@@ -1,7 +1,8 @@
 import React from 'react';
-import { Textfield, Button, Switch, List, ListItem, ListItemAction, ListItemContent, Checkbox, Icon } from 'react-mdl';
+import { Textfield, Button, Switch, Icon } from 'react-mdl';
+import { PlaceCreateComponent, PlacesListComponent } from '../../containers/Places';
 
-const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData, places, showNewDateForm, cancel }) => {
+const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData, places, showNewDateForm, cancel, toggleShowNewPlaceForm }) => {
   if (!showNewDateForm) {
     return null;
   }
@@ -13,21 +14,9 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
       <form method="post" onSubmit={e => { e.preventDefault(); datesCreateAjaxPost(newDateData) }}>
         <Textfield label="Time" id="newDateTime" name="newDateTime" value={newDateData.dateTime} onChange={e => { datesCreateNewDataChange('dateTime', e.target.value) }} /><br />
 
-        <List className="new-date-place-list">
-          {typeof places !== "undefined" && places.map((place) => {
-            return (
-              <ListItem key={place.key} onClick={e => { datesCreateNewDataChange('datePlace', place.name) }}>
-                <ListItemContent>
-                  <img width="100" height="100" src={place.imageUrl} alt="logo" className="create-place-logo" />
-                  {place.name}
-                </ListItemContent>
-                <ListItemAction>
-                  <Checkbox checked={ newDateData.datePlace === place.name } name="newDatePlace" value={place.name} ripple />
-                </ListItemAction>
-              </ListItem>
-            );
-          })}
-        </List>
+        <PlacesListComponent />
+
+        <Button type="button" raised className="add-new-place-button" onClick={toggleShowNewPlaceForm}><Icon name="add" /> Add new place</Button>
 
         <Switch ripple className="create-date-switch" id="newDateTakeAway" name="newDateTakeAway" checked={newDateData.dateTakeAway} onChange={e => { datesCreateNewDataChange('dateTakeAway', e.target.checked) }}>
           Take Away
@@ -38,9 +27,11 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
         <Textfield label="Note" id="newDateNote" name="newDateNote" value={newDateData.dateNote} onChange={e => { datesCreateNewDataChange('dateNote', e.target.value) }} />
 
         <br />
-        <Button raised onClick={cancel}><Icon name="undo" /> Cancel</Button>
+        <Button type="button" raised onClick={cancel}><Icon name="undo" /> Cancel</Button>
         <Button raised accent type="submit"><Icon name="save" /> Save</Button>
       </form>
+
+      <PlaceCreateComponent />
     </div>
   );
 }
