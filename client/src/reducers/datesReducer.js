@@ -1,5 +1,5 @@
 const initNewDateData = {
-  dateTime: '',
+  dateTime: '12:00',
   dateUser: '',
   datePlace: '',
   dateTakeAway: false,

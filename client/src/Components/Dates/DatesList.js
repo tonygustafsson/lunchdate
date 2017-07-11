@@ -36,7 +36,7 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, ne
         <TableHeader name="operations" tooltip="Manage this date"> </TableHeader>
       </DataTable>
 
-      <FABButton colored ripple className="add-new-date" onClick={toggleShowNewDateForm}>
+      <FABButton colored ripple className="add-new-date" onClick={e => { toggleShowNewDateForm() }}>
           <Icon name="add" />
       </FABButton>
     </div>

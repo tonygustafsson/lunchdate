@@ -17,10 +17,8 @@ const mapStateToProps = (state, ownProps) => {
 export const DatesListComponent = connect(
   mapStateToProps,
   (dispatch) => {
-    dispatch(datesListAjaxGet);
-    dispatch(placesListAjaxGet);
-
     return {
+      onLoad: (() => { dispatch(datesListAjaxGet); dispatch(placesListAjaxGet); })(),
       datesRemoveAjaxPost: (id) => { dispatch(datesRemoveAjaxPost(id)) },
       toggleShowNewDateForm: () => { dispatch(toggleShowNewDateForm()); }
     };
