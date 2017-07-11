@@ -5,11 +5,15 @@ import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
 
 import { DatesListComponent, DatesCreateComponent } from './containers/Dates';
+import { UserListComponent, UserEditComponent } from './containers/User';
 
 const App = () => {
     return (
         <div className="App">
           <h1 className="pageHeader">Lunch date</h1>
+
+          <UserEditComponent />
+          <UserListComponent />
 
           <DatesCreateComponent />
           <DatesListComponent />

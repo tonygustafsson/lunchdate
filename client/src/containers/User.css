@@ -1,0 +1,30 @@
+.UserList {
+    position: absolute;
+    top: 0;
+    right: 2em;
+    color: #fff;
+    text-shadow: 2px 1px 1px #000;
+    cursor: pointer;
+}
+
+.UserEdit {
+    position: absolute;
+    top: 0;
+    right: 2em;
+    color: #fff;
+    text-shadow: 2px 1px 1px #000;
+    width: 300px;
+}
+
+.UserEdit .mdl-textfield {
+    width: 60%;
+    float: left;
+}
+
+.UserEdit button {
+    float: left;
+}
+
+.material-icons {
+    vertical-align: middle;
+}

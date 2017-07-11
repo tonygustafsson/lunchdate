@@ -2,7 +2,7 @@ import React from 'react';
 import { Textfield, Button, Switch, Icon } from 'react-mdl';
 import { PlaceCreateComponent, PlacesListComponent } from '../../containers/Places';
 
-const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData, places, showNewDateForm, cancel, toggleShowNewPlaceForm }) => {
+const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData, places, showNewDateForm, cancel, toggleShowNewPlaceForm, user }) => {
   if (!showNewDateForm) {
     return null;
   }
@@ -13,7 +13,11 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
 
       <div className="CreatePlaceDate">
 
-        <form method="post" onSubmit={e => { e.preventDefault(); datesCreateAjaxPost(newDateData) }}>
+        <form method="post" onSubmit={e => {
+          e.preventDefault();
+          newDateData.dateUser = user;
+          datesCreateAjaxPost(newDateData)
+        }}>
           <Textfield label="Time" id="newDateTime" name="newDateTime" value={newDateData.dateTime} onChange={e => { datesCreateNewDataChange('dateTime', e.target.value) }} /><br />
 
           <PlacesListComponent />
@@ -22,9 +26,7 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
 
           <Switch ripple className="create-date-switch" id="newDateTakeAway" name="newDateTakeAway" checked={newDateData.dateTakeAway} onChange={e => { datesCreateNewDataChange('dateTakeAway', e.target.checked) }}>
             Take Away
-        </Switch>
-
-          <Textfield label="Your name" id="newDateUser" name="newDateUser" value={newDateData.dateUser} onChange={e => { datesCreateNewDataChange('dateUser', e.target.value) }} /><br />
+          </Switch>
 
           <Textfield label="Note" id="newDateNote" name="newDateNote" value={newDateData.dateNote} onChange={e => { datesCreateNewDataChange('dateNote', e.target.value) }} />
 

@@ -37,6 +37,7 @@ body .App h1, body .App h2 {
 
 .App {
   text-align: center;
+  position: relative;
 }
 
 .add-new-date {

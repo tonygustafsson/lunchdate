@@ -10,7 +10,8 @@ const mapStateToProps = (state, ownProps) => {
     places: state.places.list,
     loading: state.dates.loading,
     newDateData: state.dates.newDateData,
-    showNewDateForm: state.router.showNewDateForm
+    showNewDateForm: state.router.showNewDateForm,
+    user: state.user.name
   };
 };
 
