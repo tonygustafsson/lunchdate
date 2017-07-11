@@ -11,7 +11,7 @@ const UserEdit = ({ user, editMode, newNameChange, userSetName, userSaveNameToLo
         userSaveNameToLocalStorge(newNameChange);
         userToggleEditMode();
       }}>
-        <Textfield value={newNameChange} label="Name" autofocus onChange={e => { userEditNameChange(e.target.value) }} />
+        <Textfield value={newNameChange} label="Name" autoFocus onChange={e => { userEditNameChange(e.target.value) }} />
         <Button raised accent type="submit">Save</Button>
       </form>
     </div>

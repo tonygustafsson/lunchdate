@@ -45,6 +45,20 @@ export const datesRemoveDone = () => {
     };
 };
 
+export const datesAddParticipantStart = (name) => {
+    return {
+        type: 'DATES_ADD_PARTICIPANT_START',
+        payload: name
+    };
+};
+
+export const datesRemoveParticipantStart = (name) => {
+    return {
+        type: 'DATES_ADD_PARTICIPANT_START',
+        payload: name
+    };
+};
+
 export const datesUpdateList = (responseJson) => {
     return () => {
         var dates = [];
@@ -56,7 +70,8 @@ export const datesUpdateList = (responseJson) => {
                 'user': date.user,
                 'place': date.place,
                 'takeaway': date.takeaway,
-                'note': date.note
+                'note': date.note,
+                'participants': date.participants
             });
         });
 
@@ -93,7 +108,8 @@ export const datesCreateAjaxPost = (newDate) => {
                 user: newDate.dateUser,
                 place: newDate.datePlace,
                 takeaway: newDate.dateTakeAway,
-                note: newDate.dateNote
+                note: newDate.dateNote,
+                participants: [newDate.dateUser]
             })
         })
             .then((response) => response.json())
@@ -126,6 +142,60 @@ export const datesRemoveAjaxPost = id => {
             },
             body: JSON.stringify({
                 id: id
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                const dates = dispatch(datesUpdateList(responseJson));
+                dispatch(datesCreateDone());
+                dispatch(datesListDone(dates));
+            })
+            .catch((error) => {
+                throw (error);
+            });
+    };
+};
+
+export const datesAddParticipantAjaxPost = (dateId, name) => {
+    return (dispatch) => {
+        dispatch(datesAddParticipantStart());
+
+        fetch(apiUrl + '/addParticipant', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                dateId: dateId,
+                name: name
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                const dates = dispatch(datesUpdateList(responseJson));
+                dispatch(datesCreateDone());
+                dispatch(datesListDone(dates));
+            })
+            .catch((error) => {
+                throw (error);
+            });
+    };
+};
+
+export const datesRemoveParticipantAjaxPost = (dateId, name) => {
+    return (dispatch) => {
+        dispatch(datesRemoveParticipantStart());
+
+        fetch(apiUrl + '/removeParticipant', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                dateId: dateId,
+                name: name
             })
         })
             .then((response) => response.json())

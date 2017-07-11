@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import { datesListAjaxGet, placesListAjaxGet, datesCreateAjaxPost, datesRemoveAjaxPost, datesCreateNewDataChange, toggleShowNewDateForm, datesCreateReset, toggleShowNewPlaceForm } from '../actions';
+import { datesListAjaxGet, placesListAjaxGet, datesCreateAjaxPost, datesRemoveAjaxPost, datesAddParticipantAjaxPost,
+          datesRemoveParticipantAjaxPost, datesCreateNewDataChange, toggleShowNewDateForm, datesCreateReset, toggleShowNewPlaceForm } from '../actions';
 import DatesList from '../components/Dates/DatesList';
 import DateCreate from '../components/Dates/DateCreate';
 import './Dates.css';
@@ -21,7 +22,9 @@ export const DatesListComponent = connect(
     return {
       onLoad: (() => { dispatch(datesListAjaxGet); dispatch(placesListAjaxGet); })(),
       datesRemoveAjaxPost: (id) => { dispatch(datesRemoveAjaxPost(id)) },
-      toggleShowNewDateForm: () => { dispatch(toggleShowNewDateForm()); }
+      toggleShowNewDateForm: () => { dispatch(toggleShowNewDateForm()); },
+      datesAddParticipantAjaxPost: (dateId, name) => { dispatch(datesAddParticipantAjaxPost(dateId, name)); },
+      datesRemoveParticipantAjaxPost: (dateId, name) => { dispatch(datesRemoveParticipantAjaxPost(dateId, name)); }
     };
   }
 )(DatesList);

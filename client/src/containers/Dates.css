@@ -43,5 +43,22 @@
 }
 
 .date-operation-column {
-    text-align: center;
+    text-align: right;
+}
+
+.date-operation-column button {
+    float: right;
+    clear: both;
+    width: 100%;
+}
+
+.date-delete-button {
+    float: right;
+    clear: both;
+    width: 100%;
+    padding-right: 4px;
+}
+
+.mdl-textfield__label {
+    text-shadow: none;
 }

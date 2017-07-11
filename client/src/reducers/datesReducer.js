@@ -36,6 +36,10 @@ const datesReducer = (state = initState, action) => {
       return { ...state, newDateData: initNewDateData };
     case 'DATES_CREATE_DONE':
       return { ...state };
+    case 'DATES_ADD_PARTICIPANT_START':
+      return { ...state, loading: true };
+    case 'DATES_ADD_PARTICIPANT_DONE':
+      return { ...state, loading: false, list: action.payload };
     default:
       return state;
   }
