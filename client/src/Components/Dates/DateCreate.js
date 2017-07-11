@@ -8,31 +8,33 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
   }
 
   return (
-    <div className="CreatePlaceDate">
+    <div>
       <h2>Create new date</h2>
 
-      <form method="post" onSubmit={e => { e.preventDefault(); datesCreateAjaxPost(newDateData) }}>
-        <Textfield label="Time" id="newDateTime" name="newDateTime" value={newDateData.dateTime} onChange={e => { datesCreateNewDataChange('dateTime', e.target.value) }} /><br />
+      <div className="CreatePlaceDate">
 
-        <PlacesListComponent />
+        <form method="post" onSubmit={e => { e.preventDefault(); datesCreateAjaxPost(newDateData) }}>
+          <Textfield label="Time" id="newDateTime" name="newDateTime" value={newDateData.dateTime} onChange={e => { datesCreateNewDataChange('dateTime', e.target.value) }} /><br />
 
-        <Button type="button" raised className="add-new-place-button" onClick={toggleShowNewPlaceForm}><Icon name="add" /> Add new place</Button>
+          <PlacesListComponent />
 
-        <Switch ripple className="create-date-switch" id="newDateTakeAway" name="newDateTakeAway" checked={newDateData.dateTakeAway} onChange={e => { datesCreateNewDataChange('dateTakeAway', e.target.checked) }}>
-          Take Away
+          <Button type="button" raised className="add-new-place-button" onClick={toggleShowNewPlaceForm}><Icon name="add" /> Add new place</Button>
+
+          <Switch ripple className="create-date-switch" id="newDateTakeAway" name="newDateTakeAway" checked={newDateData.dateTakeAway} onChange={e => { datesCreateNewDataChange('dateTakeAway', e.target.checked) }}>
+            Take Away
         </Switch>
 
-        <Textfield label="Your name" id="newDateUser" name="newDateUser" value={newDateData.dateUser} onChange={e => { datesCreateNewDataChange('dateUser', e.target.value) }} /><br />
+          <Textfield label="Your name" id="newDateUser" name="newDateUser" value={newDateData.dateUser} onChange={e => { datesCreateNewDataChange('dateUser', e.target.value) }} /><br />
 
-        <Textfield label="Note" id="newDateNote" name="newDateNote" value={newDateData.dateNote} onChange={e => { datesCreateNewDataChange('dateNote', e.target.value) }} />
+          <Textfield label="Note" id="newDateNote" name="newDateNote" value={newDateData.dateNote} onChange={e => { datesCreateNewDataChange('dateNote', e.target.value) }} />
 
-        <br />
-        <Button type="button" raised onClick={cancel}><Icon name="undo" /> Cancel</Button>
-        <Button raised accent type="submit"><Icon name="save" /> Save</Button>
-      </form>
+          <br />
+          <Button type="button" raised onClick={cancel}><Icon name="undo" /> Cancel</Button>
+          <Button raised accent type="submit"><Icon name="save" /> Save</Button>
+        </form>
 
-      <PlaceCreateComponent />
-    </div>
+        <PlaceCreateComponent />
+      </div></div>
   );
 }
 
