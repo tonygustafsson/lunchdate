@@ -5,7 +5,8 @@ const express = require('express'),
 	fs = require('fs'),
 	r = require('rethinkdb'),
 	bodyParser = require('body-parser'),
-	cors = require('cors');
+	cors = require('cors'),
+	moment = require('moment');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -95,16 +96,42 @@ app.post('/lunchdate/place/remove', function (req, res) {
 
 /* Dates */
 
+const getDateFromTime = (time) => {
+	const 	timeInfo = time.split(':'),
+		  	hour = parseInt(timeInfo[0]),
+			minute = parseInt(timeInfo[1]),
+			second = 0,
+			jsDate = new Date(),
+			year = jsDate.getUTCFullYear(),
+			month = jsDate.getUTCMonth(),
+			day = jsDate.getUTCDate();
+
+	const momentTime = moment([year, month, day, hour, minute, second]);
+
+	return momentTime.toISOString();
+};
+
+const getTimeFromDate = (time) => {
+	return moment(time).format('HH:mm');
+};
+
 function lunchDateTodaysDatesList(res) {
 	r.table(dateTable)
+		.filter(function (date) {
+			return r.ISO8601(date("time")).date().eq(r.now().date());
+		})
 		.orderBy('time')
 		.run(connection, function (err, cursor) {
 			if (err) throw err;
 
-			cursor.toArray(function (err, result) {
+			cursor.toArray(function (err, dates) {
 				if (err) throw err;
 
-				res.send(JSON.stringify(result, null, 2));
+				dates.map(function (date) {
+					date.time = getTimeFromDate(date.time);
+				});
+
+				res.send(JSON.stringify(dates, null, 2));
 			});
 		});
 }
@@ -119,7 +146,7 @@ app.post('/lunchdate/date/create', function (req, res) {
 	res.header('Access-Control-Allow-Origin', clientUrl);
 	res.header('Access-Control-Allow-Methods', 'POST');
 
-	var time = req.body.time,
+	var time = getDateFromTime(req.body.time),
 		user = req.body.user,
 		place = req.body.place,
 		takeaway = req.body.takeaway,
