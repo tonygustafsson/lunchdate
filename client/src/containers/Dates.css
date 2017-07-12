@@ -11,8 +11,8 @@
 }
 
 .date-place-logo {
-    width: 100px;
-    height: 100px;
+    max-width: 250px;
+    max-height: 100px;
 }
 
 .mdl-list__item {
@@ -61,6 +61,10 @@
 
 .mdl-textfield__label {
     text-shadow: none;
+}
+
+.DateListList td:nth-child(1) {
+    text-align: center;
 }
 
 .DateListList td:nth-child(2) {

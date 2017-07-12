@@ -8,8 +8,10 @@ const PlacesList = ({ places, placesRemoveAjaxPost, loading, datesCreateNewDataC
         return (
           <ListItem key={place.key} onClick={e => { datesCreateNewDataChange('datePlace', place.name) }}>
             <ListItemContent>
-              <img width="100" height="100" src={place.imageUrl} alt="logo" className="create-place-logo" />
-              {place.name}
+              <div className="place-logo-container">
+                <img src={place.imageUrl} alt="logo" className="place-logo" />
+              </div>
+              <div className="place-name-container">{place.name}</div>
             </ListItemContent>
             <ListItemAction>
               <Checkbox checked={newDateData.datePlace === place.name} name="newDatePlace" value={place.name} ripple /><br />

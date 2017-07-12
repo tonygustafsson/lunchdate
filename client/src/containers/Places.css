@@ -7,13 +7,26 @@
     width: 25%;
 }
 
-.place-logo {
-    width: 100%;
-}
-
 .place-delete-icon {
     display: inline-block;
     padding-top: 20px;
     color: #000;
     padding-right: 6px;
+}
+
+.place-logo {
+    max-width: 250px;
+    max-height: 100px;
+}
+
+.place-logo-container {
+    float: left;
+    width: 260px;
+    padding: 1em 0;
+}
+
+.place-name-container {
+    float: left;
+    padding-top: 2.5em;
+    font-size: 140%;
 }
