@@ -62,3 +62,8 @@
 .mdl-textfield__label {
     text-shadow: none;
 }
+
+.DateListList td:nth-child(2) {
+    font-weight: bold;
+    font-size: 140%;
+}
