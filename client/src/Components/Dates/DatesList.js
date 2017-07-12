@@ -7,6 +7,18 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
     return null;
   }
 
+  if (dates.length < 1) {
+    return (
+      <div>
+        <h2>There is no dates today yet :(</h2>
+
+        <FABButton colored ripple className="add-new-date" onClick={e => { toggleShowNewDateForm() }}>
+            <Icon name="add" />
+        </FABButton>
+      </div>
+    );
+  }
+
   return (
     <div className="DatesList">
       <h2>Todays dates</h2>
