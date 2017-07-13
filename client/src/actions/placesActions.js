@@ -44,6 +44,18 @@ export const placesRemoveDone = () => {
     };
 };
 
+export const placesUploadLogoStart = () => {
+    return {
+        type: 'PLACES_UPLOAD_LOGO_START'
+    };
+};
+
+export const placesUploadLogoDone = () => {
+    return {
+        type: 'PLACES_UPLOAD_LOGO_DONE'
+    };
+};
+
 export const placesUpdateList = (responseJson) => {
     return () => {
         var places = [];
@@ -124,5 +136,42 @@ export const placesRemoveAjaxPost = id => {
             .catch((error) => {
                 throw (error);
             });
+    };
+};
+
+export const placesUploadLogoChange = (place, files) => {
+    return (dispatch) => {
+        dispatch(placesUploadLogoStart());
+
+        const file = files[0],
+            reader = new FileReader();
+
+        reader.onloadend = function (theFile) {
+            fetch(apiUrl + '/uploadLogo', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    placeIdentifier: place.identifier,
+                    fileContent: reader.result
+                })
+            })
+                .then((response) => {
+                    let random = Math.random(),
+                        newImgPath = '/img/places/' + place.identifier + '.png?bust=' + random;
+
+                    place.imageUrl = newImgPath;
+
+                    dispatch(placesUploadLogoDone());
+                })
+                .catch((error) => {
+                    throw error;
+                });
+        };
+
+        reader.readAsDataURL(file);
+
     };
 };

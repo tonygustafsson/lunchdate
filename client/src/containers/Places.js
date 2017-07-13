@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { placesCreateAjaxPost, placesRemoveAjaxPost, placesCreateNewNameChange, datesCreateNewDataChange, toggleShowNewPlaceForm } from '../actions';
+import { placesCreateAjaxPost, placesRemoveAjaxPost, placesCreateNewNameChange, datesCreateNewDataChange, toggleShowNewPlaceForm, placesUploadLogoChange } from '../actions';
 import PlacesList from '../components/Places/PlacesList';
 import PlaceCreate from '../components/Places/PlaceCreate';
 import './Places.css';
@@ -26,6 +26,9 @@ export const PlacesListComponent = connect(
       },
       toggleShowNewPlaceForm: () => {
         dispatch(toggleShowNewPlaceForm());
+      },
+      placesUploadLogoChange: (place, files) => {
+        dispatch(placesUploadLogoChange(place, files));
       }
     };
   }

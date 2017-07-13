@@ -9,7 +9,7 @@ const express = require('express'),
 	moment = require('moment');
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '2mb' }));
 app.use(cors());
 
 const clientUrl = 'http://localhost:3000', // For CORS
@@ -97,6 +97,24 @@ app.post('/lunchdate/place/remove', function (req, res) {
 
 			lunchDatePlaceList(res);
 		});
+});
+
+app.post('/lunchdate/place/uploadLogo', function (req, res) {
+	res.header('Access-Control-Allow-Origin', clientUrl);
+	res.header('Access-Control-Allow-Methods', 'POST');
+
+	var placeIdentifier = req.body.placeIdentifier,
+		fileContent = req.body.fileContent.replace(/^data:image\/\w+;base64,/, ""),
+		imgPath = placeLogoImgPath + placeIdentifier + '.png';
+
+	fs.writeFile(imgPath, fileContent, { encoding: 'base64' }, function (error) {
+		if (error) {
+			res.status(500).send(JSON.stringify(['Could not save image.']));
+			return;
+		}
+
+		res.send(JSON.stringify(['OK']));
+	});
 });
 
 /* Dates */
