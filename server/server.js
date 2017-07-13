@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const clientUrl = 'http://localhost:3000', // For CORS
+	  placeLogoImgPath = '../client/public/img/places/',
 	  placeTable = 'places',
 	  dateTable = 'dates';
 
@@ -42,7 +43,11 @@ function lunchDatePlaceList(res) {
 				if (err) throw err;
 
 				places.map(function (place) {
-					place.imageUrl = '/img/places/' + place.identifier + '.png';
+					let imgPath = (fs.existsSync(placeLogoImgPath + place.identifier + '.png'))
+					? '/img/places/' + place.identifier + '.png'
+					: '/img/noimg.png';
+
+					place.imageUrl = imgPath;
 				});
 
 				res.send(JSON.stringify(places, null, 2));
