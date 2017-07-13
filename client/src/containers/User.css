@@ -1,7 +1,7 @@
 .user-list {
     position: absolute;
-    top: 0;
-    right: 2em;
+    top: -1em;
+    right: 1em;
     width: 300px;
 
     color: #fff;
@@ -12,9 +12,11 @@
 .user-edit-container {
     position: absolute;
     top: 0;
-    right: 2em;
+    right: 10%;
 
-    color: #fff;
+    color: #000;
+    background: rgba(255,255,255,.7);
+    padding: .5em;
     text-shadow: 2px 1px 1px #000;
     cursor: pointer;
 }
@@ -26,4 +28,11 @@
 
 .user-edit-container button {
     float: left;
+}
+
+@media (min-width: 600px) {
+  .user-list {
+    top: 0;
+    right: 2em;
+  }
 }

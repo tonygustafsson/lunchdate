@@ -1,31 +1,58 @@
-.place-list-item {
-    padding: 8px 0;
-    border-bottom: 1px rgba(0,0,0,.1) solid;
+.place-list {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-content: stretch;
+
+    margin: 0;
+    padding-bottom: 2em;
 }
 
-.place-delete-icon {
-    display: inline-block;
+.place-list-item {
+    flex: 1;
+    min-width: 23%;
 
-    padding-top: 20px;
-    padding-right: 6px;
-
-    color: #000;
+    box-sizing: border-box;
+    padding: 1em;
+    margin: .5em;
+    background: rgba(255,255,255,.4);
+    border: 1px #fff solid;
 }
 
 .place-logo-container {
-    float: left;
-    width: 260px;
+    width: 100%;
+    box-sizing: border-box;
     padding: 1em 0;
     text-align: center;
-}
-
-.place-name-container {
-    float: left;
-    padding-top: 2.5em;
-    font-size: 140%;
+    cursor: pointer;
 }
 
 .place-logo {
     max-width: 250px;
     max-height: 100px;
+}
+
+.place-list-checkbox {
+    width: auto;
+}
+
+.place-name-container {
+    padding-top: 2.5em;
+    font-size: 140%;
+}
+
+.place-list-action-buttons {
+    text-align: right;
+}
+
+.place-list-action-buttons a {
+    color: #000 !important;
+    cursor: pointer;
+}
+
+@media (min-width: 600px) {
+    .place-list {
+        flex-direction: row;
+    }
+
 }

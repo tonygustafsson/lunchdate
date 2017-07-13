@@ -1,8 +1,8 @@
 import React from 'react';
-import { DataTable, TableHeader, Tooltip, FABButton, Icon, Button } from 'react-mdl';
+import { Tooltip, FABButton, Icon, Button } from 'react-mdl';
 
 const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, user,
-                      newDateData, toggleShowNewDateForm, showNewDateForm, datesAddParticipantAjaxPost, datesRemoveParticipantAjaxPost }) => {
+  newDateData, toggleShowNewDateForm, showNewDateForm, datesAddParticipantAjaxPost, datesRemoveParticipantAjaxPost }) => {
   if (showNewDateForm) {
     return null;
   }
@@ -13,7 +13,7 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
         <h2>There is no dates today yet :(</h2>
 
         <FABButton colored ripple className="add-new-date-button" onClick={e => { toggleShowNewDateForm() }}>
-            <Icon name="add" />
+          <Icon name="add" />
         </FABButton>
       </div>
     );
@@ -21,44 +21,47 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
 
   return (
     <div className="date-list-container">
-      <h2>Todays dates</h2>
-
-      <DataTable className="date-list" shadow={4} rows={
-        dates.map(function (date) {
-          let changedDate = Object.assign({}, date),
-              place = places.find(function(place) { return place.name === date.place; }),
+      <div className="dates">
+        {typeof dates !== "undefined" && dates.map((date) => {
+          let place = places.find(function (place) { return place.name === date.place; }),
+              datePlace = date.takeaway ? date.place +  ' (takeaway)' : date.place,
               placeImageUrl = typeof place !== "undefined" ? place.imageUrl : "";
 
-          changedDate.participants = date.participants.join(', ').replace(date.user, "*" + date.user);
-          changedDate.placeImage = <img src={placeImageUrl} alt="Logo" className="date-place-logo" />
-          changedDate.takeaway = date.takeaway ? 'Yes' : 'No';
-          changedDate.operations = <div className="date-operation-column">
-                              <Button style={{ display: date.participants.includes(user) ? 'none' : 'block' }} raised accent ripple type="button" onClick={e => { datesAddParticipantAjaxPost(date.key, user) }}>
-                                <Icon name="restaurant" /> Join
-                              </Button>
+          return (
+            <div className="date-item" key={date.key}>
+              <span className="date-item-title">{datePlace} {date.time}</span>
+              <img src={placeImageUrl} alt="Logo" className="date-place-logo" />
 
-                              <Button style={{ display: date.participants.includes(user) ? 'block' : 'none' }} raised accent ripple type="button" onClick={e => { datesRemoveParticipantAjaxPost(date.key, user) }}>
-                                <Icon name="cancel" /> No thanks
-                              </Button>
+              { date.note !== "" &&
+                <p className="date-item-note">{date.note}</p>
+              }
 
-                              <Tooltip label="Delete" className="date-delete-button">
-                                <i className="material-icons date-delete-button" onClick={() => datesRemoveAjaxPost(date.key)}>delete</i>
-                              </Tooltip>
-                            </div>;
-          return changedDate;
-        })
-      }>
-        <TableHeader name="placeImage"> </TableHeader>
-        <TableHeader name="time" tooltip="When to have lunch">Time</TableHeader>
-        <TableHeader name="participants" tooltip="Whos coming?">Participants</TableHeader>
-        <TableHeader name="place" tooltip="The place to eat / take away from">Place</TableHeader>
-        <TableHeader name="takeaway" tooltip="Is the plan to eat there or take away?">TakeAway</TableHeader>
-        <TableHeader name="note" tooltip="Anything more?">Note</TableHeader>
-        <TableHeader name="operations" tooltip="Manage this date"> </TableHeader>
-      </DataTable>
+              { date.participants.length > 0 &&
+                <p className="date-item-participants">Participants: { date.participants.join(', ').replace(date.user, date.user + ' (host)') }.</p>
+              }
+
+              { date.participants.length < 1 &&
+                <p className="date-item-participants">No participants.</p>
+              }
+
+              <Button className="date-action-button" style={{ display: date.participants.includes(user) ? 'none' : 'block' }} raised accent ripple type="button" onClick={e => { datesAddParticipantAjaxPost(date.key, user) }}>
+                <Icon name="restaurant" /> Join
+              </Button>
+
+              <Button className="date-action-button" style={{ display: date.participants.includes(user) ? 'block' : 'none' }} raised accent ripple type="button" onClick={e => { datesRemoveParticipantAjaxPost(date.key, user) }}>
+                <Icon name="cancel" /> No thanks
+              </Button>
+
+              <Tooltip label="Delete" className="date-delete-button">
+                <i className="material-icons date-delete-button" onClick={() => datesRemoveAjaxPost(date.key)}>delete</i>
+              </Tooltip>
+            </div>
+          );
+        })}
+      </div>
 
       <FABButton colored ripple className="add-new-date-button" onClick={e => { toggleShowNewDateForm() }}>
-          <Icon name="add" />
+        <Icon name="add" />
       </FABButton>
     </div>
   );

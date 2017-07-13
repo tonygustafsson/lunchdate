@@ -1,29 +1,62 @@
 .create-date-container {
-    max-width: 700px;
-    margin: 0 auto;
+    width: 90%;
+    margin: 0 5%;
     padding: 20px;
+    box-sizing: border-box;
 
     background: rgba(255,255,255,.7);
 }
 
-.date-list {
-    margin: 0 auto;
+.dates {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-content: stretch;
 
-    background: rgba(255,255,255,.7);
-    cursor: pointer;
+    margin: 0 5%;
+    padding-bottom: 2em;
 }
 
-.date-list td:nth-child(1) {
+.date-item {
+    flex: 1;
+
+    box-sizing: border-box;
+    padding: 1em;
+    margin: 1em;
+
+    background: rgba(255,255,255,.7);
     text-align: center;
 }
 
-.date-list td:nth-child(2) {
-    font-weight: bold;
-    font-size: 140%;
+.date-item-title {
+    font-family: 'Amarante', cursive;
+    font-size: 200%;
+    display: block;
+    padding: .5em 0 1em 0;
+}
+
+.date-item-note {
+    text-align: left;
+    padding-top: 1em;
+}
+
+.date-item-participants {
+    text-align: left;
+}
+
+.date-action-button {
+    display: block;
+    margin-top: 20px !important;
+    width: 96%;
+}
+
+.date-delete-button {
+    float: right;
+    cursor: pointer;
 }
 
 .date-place-logo {
-    max-width: 250px;
+    max-width: 200px;
     max-height: 100px;
 }
 
@@ -50,15 +83,19 @@
     text-align: center;
 }
 
-.date-delete-button {
-    float: right;
-    clear: both;
-    width: 100%;
-    padding-right: 4px;
-}
-
 .add-new-date-button {
   position: fixed;
   right: 1em;
   bottom: 1em;
+}
+
+@media (min-width: 600px) {
+    .dates {
+        flex-direction: row;
+    }
+
+    .date-place-logo {
+        max-width: 300px;
+        min-height: 200px;
+    }
 }
