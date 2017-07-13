@@ -12,15 +12,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-const clientUrl = 'http://localhost:3000'; // For CORS
+const clientUrl = 'http://localhost:3000', // For CORS
+	  placeTable = 'places',
+	  dateTable = 'dates';
 
-app.listen(8080, function () {
-	console.log('Starting web server');
+app.listen(8081, function () {
+	console.log('Starting web server on http://localhost:8081/');
 });
 
-var connection = null,
-	placeTable = 'places',
-	dateTable = 'dates';
+let connection = null;
 
 // Connect to DB
 r.connect({ host: 'localhost', port: 28015 }, function (err, conn) {
