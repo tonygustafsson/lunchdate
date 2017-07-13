@@ -6,7 +6,7 @@ const PlacesList = ({ places, placesRemoveAjaxPost, loading, datesCreateNewDataC
     <List className="place-list">
       {typeof places !== "undefined" && places.map((place) => {
         return (
-          <ListItem key={place.key} onClick={e => { datesCreateNewDataChange('datePlace', place.name) }}>
+          <ListItem className="place-list-item" key={place.key} onClick={e => { datesCreateNewDataChange('datePlace', place.name) }}>
             <ListItemContent>
               <div className="place-logo-container">
                 <img src={place.imageUrl} alt="logo" className="place-logo" />

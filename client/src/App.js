@@ -9,8 +9,8 @@ import { UserListComponent, UserEditComponent } from './containers/User';
 
 const App = () => {
     return (
-        <div className="App">
-          <h1 className="pageHeader">Lunch date</h1>
+        <div className="app">
+          <h1>Lunch date</h1>
 
           <UserEditComponent />
           <UserListComponent />

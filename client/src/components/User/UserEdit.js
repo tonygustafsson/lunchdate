@@ -5,7 +5,7 @@ const UserEdit = ({ user, editMode, newNameChange, userSetName, userSaveNameToLo
   if (!editMode) return null;
 
   return (
-    <div className="UserEdit">
+    <div className="user-edit-container">
       <form onSubmit={e => {
         e.preventDefault();
         userSaveNameToLocalStorge(newNameChange);

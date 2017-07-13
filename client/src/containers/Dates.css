@@ -1,13 +1,25 @@
-.CreatePlaceDate {
-    background: rgba(255,255,255,.7);
-    padding: 1em;
+.create-date-container {
     max-width: 700px;
     margin: 0 auto;
     padding: 20px;
+
+    background: rgba(255,255,255,.7);
 }
 
-.DateListList {
+.date-list {
+    margin: 0 auto;
+
     background: rgba(255,255,255,.7);
+    cursor: pointer;
+}
+
+.date-list td:nth-child(1) {
+    text-align: center;
+}
+
+.date-list td:nth-child(2) {
+    font-weight: bold;
+    font-size: 140%;
 }
 
 .date-place-logo {
@@ -15,27 +27,9 @@
     max-height: 100px;
 }
 
-.mdl-list__item {
-    padding: 8px 0;
-    border-bottom: 1px rgba(0,0,0,.1) solid;
-    cursor: pointer;
-}
-
-.mdl-textfield {
-    width: 100%;
-}
-
-.create-place-logo {
-    padding-right: 10px;
-}
-
 .create-date-switch {
-    width: 120px;
     float: left;
-}
-
-.mdl-button {
-    margin: 10px;
+    width: 120px;
 }
 
 .add-new-place-button {
@@ -52,6 +46,10 @@
     width: 100%;
 }
 
+.create-date-buttons {
+    text-align: center;
+}
+
 .date-delete-button {
     float: right;
     clear: both;
@@ -59,15 +57,8 @@
     padding-right: 4px;
 }
 
-.mdl-textfield__label {
-    text-shadow: none;
-}
-
-.DateListList td:nth-child(1) {
-    text-align: center;
-}
-
-.DateListList td:nth-child(2) {
-    font-weight: bold;
-    font-size: 140%;
+.add-new-date-button {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
 }

@@ -1,70 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Amarante');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import './MaterialDesignOverrides.css';
+
+.app {
+  position: relative;
+}
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-image: url('/img/header-bg.jpg');
-  background-repeat: no-repeat;
+  padding-bottom: 20px;
+
+  background: url('/img/header-bg.jpg') fixed no-repeat;
   background-size: cover;
+
+  font-family: 'Roboto', sans-serif;
 }
 
-.pageHeader {
+.app h1, .app h2, .app h3 {
+  padding: 0 1em;
+
+  font-family: 'Amarante', cursive !important; /* Sorry */
   text-align: left;
-  padding: 0 1em;
   text-transform: uppercase;
   color: #fff;
   text-shadow: 2px 2px 2px #000;
 }
 
-h1, h2 {
-  padding: 0 1em;
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow: 2px 2px 2px #000;
-}
-
-h1.black, h2.black {
-  color: #000;
-  text-shadow: none;
-}
-
-body .App h1, body .App h2 {
-  font-family: 'Amarante', cursive;
-}
-
-.App {
+.app h2, .app h3 {
   text-align: center;
-  position: relative;
-}
-
-.add-new-date {
-  position: fixed !important;
-  right: 1em;
-  bottom: 1em;
-}
-
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: 'liga';
-}
-
-.mdl-data-table {
-  margin: 0 auto;
-  cursor: pointer;
 }

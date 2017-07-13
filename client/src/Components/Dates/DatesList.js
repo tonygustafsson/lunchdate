@@ -12,7 +12,7 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
       <div>
         <h2>There is no dates today yet :(</h2>
 
-        <FABButton colored ripple className="add-new-date" onClick={e => { toggleShowNewDateForm() }}>
+        <FABButton colored ripple className="add-new-date-button" onClick={e => { toggleShowNewDateForm() }}>
             <Icon name="add" />
         </FABButton>
       </div>
@@ -20,10 +20,10 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
   }
 
   return (
-    <div className="DatesList">
+    <div className="date-list-container">
       <h2>Todays dates</h2>
 
-      <DataTable className="DateListList" shadow={4} rows={
+      <DataTable className="date-list" shadow={4} rows={
         dates.map(function (date) {
           let changedDate = Object.assign({}, date),
               place = places.find(function(place) { return place.name === date.place; }),
@@ -57,7 +57,7 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
         <TableHeader name="operations" tooltip="Manage this date"> </TableHeader>
       </DataTable>
 
-      <FABButton colored ripple className="add-new-date" onClick={e => { toggleShowNewDateForm() }}>
+      <FABButton colored ripple className="add-new-date-button" onClick={e => { toggleShowNewDateForm() }}>
           <Icon name="add" />
       </FABButton>
     </div>

@@ -11,7 +11,7 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
     <div>
       <h2>Create new date</h2>
 
-      <div className="CreatePlaceDate">
+      <div className="create-date-container">
 
         <form method="post" onSubmit={e => {
           e.preventDefault();
@@ -30,13 +30,15 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
 
           <Textfield label="Note" id="newDateNote" name="newDateNote" value={newDateData.dateNote} onChange={e => { datesCreateNewDataChange('dateNote', e.target.value) }} />
 
-          <br />
-          <Button type="button" raised onClick={cancel}><Icon name="undo" /> Cancel</Button>
-          <Button raised accent type="submit"><Icon name="save" /> Save</Button>
+          <div className="create-date-buttons">
+            <Button type="button" raised onClick={cancel}><Icon name="undo" /> Cancel</Button>
+            <Button raised accent type="submit"><Icon name="save" /> Save</Button>
+          </div>
         </form>
 
         <PlaceCreateComponent />
-      </div></div>
+      </div>
+    </div>
   );
 }
 

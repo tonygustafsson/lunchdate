@@ -5,7 +5,7 @@ const UserList = ({ user, userToggleEditMode, editMode }) => {
     if (editMode) return null;
 
     return (
-        <div className="UserList" onClick={e => { userToggleEditMode(); }}>
+        <div className="user-list" onClick={e => { userToggleEditMode(); }}>
             <Icon name="person" /> {user.name}
         </div>
     );

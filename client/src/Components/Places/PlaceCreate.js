@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogActions, Button, Icon, Textfield } from 'r
 
 const PlaceCreate = ({ placesCreateAjaxPost, newPlaceName, placesCreateNewNameChange, showNewPlaceForm, toggleShowNewPlaceForm }) => {
   return (
-    <div className="PlaceCreate">
+    <div className="place-create-container">
       <form method="post" onSubmit={e => {
         e.preventDefault();
         placesCreateAjaxPost(newPlaceName);

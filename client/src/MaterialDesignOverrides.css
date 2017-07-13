@@ -1,0 +1,16 @@
+.app .mdl-button {
+    margin: 10px;
+}
+
+.app .mdl-textfield {
+    width: 100%;
+}
+
+.app .mdl-textfield__label {
+    text-shadow: none;
+}
+
+.material-icons {
+    vertical-align: middle;
+}
+
