@@ -59,6 +59,12 @@ export const datesRemoveParticipantStart = (name) => {
     };
 };
 
+export const datesShowNewDateForm = () => {
+    return {
+        type: 'DATES_SHOW_NEW_DATE_FORM'
+    };
+};
+
 export const datesUpdateList = (responseJson) => {
     return () => {
         var dates = [];

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { datesListAjaxGet, placesListAjaxGet, datesCreateAjaxPost, datesRemoveAjaxPost, datesAddParticipantAjaxPost,
-          datesRemoveParticipantAjaxPost, datesCreateNewDataChange, toggleShowNewDateForm, datesCreateReset, toggleShowNewPlaceForm } from '../actions';
+          datesRemoveParticipantAjaxPost, datesCreateNewDataChange, datesShowNewDateForm, datesCreateReset, placesToggleNewPlaceForm } from '../actions';
 import DatesList from '../components/Dates/DatesList';
 import DateCreate from '../components/Dates/DateCreate';
 import './Dates.css';
@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
     places: state.places.list,
     loading: state.dates.loading,
     newDateData: state.dates.newDateData,
-    showNewDateForm: state.router.showNewDateForm,
+    showNewDateForm: state.dates.showNewDateForm,
     user: state.user.name
   };
 };
@@ -22,7 +22,7 @@ export const DatesListComponent = connect(
     return {
       onLoad: (() => { dispatch(datesListAjaxGet); dispatch(placesListAjaxGet); })(),
       datesRemoveAjaxPost: (id) => { dispatch(datesRemoveAjaxPost(id)) },
-      toggleShowNewDateForm: () => { dispatch(toggleShowNewDateForm()); },
+      datesShowNewDateForm: () => { dispatch(datesShowNewDateForm()); },
       datesAddParticipantAjaxPost: (dateId, name) => { dispatch(datesAddParticipantAjaxPost(dateId, name)); },
       datesRemoveParticipantAjaxPost: (dateId, name) => { dispatch(datesRemoveParticipantAjaxPost(dateId, name)); }
     };
@@ -39,14 +39,14 @@ export const DatesCreateComponent = connect(
       datesCreateAjaxPost: (newDateData) => {
         dispatch(datesCreateAjaxPost(newDateData));
         dispatch(datesCreateReset());
-        dispatch(toggleShowNewDateForm());
+        dispatch(datesShowNewDateForm());
       },
       cancel: () => {
         dispatch(datesCreateReset());
-        dispatch(toggleShowNewDateForm());
+        dispatch(datesShowNewDateForm());
       },
-      toggleShowNewPlaceForm: () => {
-        dispatch(toggleShowNewPlaceForm());
+      placesToggleNewPlaceForm: () => {
+        dispatch(placesToggleNewPlaceForm());
       }
     };
   })(DateCreate);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Tooltip, FABButton, Icon, Button } from 'react-mdl';
 
 const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, user,
-  newDateData, toggleShowNewDateForm, showNewDateForm, datesAddParticipantAjaxPost, datesRemoveParticipantAjaxPost }) => {
+  newDateData, datesShowNewDateForm, showNewDateForm, datesAddParticipantAjaxPost, datesRemoveParticipantAjaxPost }) => {
   if (showNewDateForm) {
     return null;
   }
@@ -12,7 +12,7 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
       <div>
         <h2>There is no dates today yet :(</h2>
 
-        <FABButton colored ripple className="add-new-date-button" onClick={e => { toggleShowNewDateForm() }}>
+        <FABButton colored ripple className="add-new-date-button" onClick={e => { datesShowNewDateForm() }}>
           <Icon name="add" />
         </FABButton>
       </div>
@@ -60,7 +60,7 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
         })}
       </div>
 
-      <FABButton colored ripple className="add-new-date-button" onClick={e => { toggleShowNewDateForm() }}>
+      <FABButton colored ripple className="add-new-date-button" onClick={e => { datesShowNewDateForm() }}>
         <Icon name="add" />
       </FABButton>
     </div>

@@ -9,7 +9,8 @@ const initNewDateData = {
 const initState = {
   list: [],
   loading: true,
-  newDateData: initNewDateData
+  newDateData: initNewDateData,
+  showNewDateForm: false
 };
 
 const datesReducer = (state = initState, action) => {
@@ -32,6 +33,8 @@ const datesReducer = (state = initState, action) => {
         default:
           return state;
       }
+    case 'DATES_SHOW_NEW_DATE_FORM':
+      return { ...state, showNewDateForm: !state.showNewDateForm };
     case 'DATES_CREATE_RESET':
       return { ...state, newDateData: initNewDateData };
     case 'DATES_CREATE_DONE':

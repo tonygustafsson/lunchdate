@@ -2,7 +2,7 @@ import React from 'react';
 import { Textfield, Button, Switch, Icon } from 'react-mdl';
 import { PlaceCreateComponent, PlacesListComponent } from '../../containers/Places';
 
-const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData, places, showNewDateForm, cancel, toggleShowNewPlaceForm, user }) => {
+const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData, places, showNewDateForm, cancel, placesToggleNewPlaceForm, user }) => {
   if (!showNewDateForm) {
     return null;
   }
@@ -22,7 +22,7 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
 
           <PlacesListComponent />
 
-          <Button type="button" raised className="add-new-place-button" onClick={toggleShowNewPlaceForm}><Icon name="add" /> Add new place</Button>
+          <Button type="button" raised className="add-new-place-button" onClick={placesToggleNewPlaceForm}><Icon name="add" /> Add new place</Button>
 
           <Switch ripple className="create-date-switch" id="newDateTakeAway" name="newDateTakeAway" checked={newDateData.dateTakeAway} onChange={e => { datesCreateNewDataChange('dateTakeAway', e.target.checked) }}>
             Take Away

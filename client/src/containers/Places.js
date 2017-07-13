@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { placesCreateAjaxPost, placesRemoveAjaxPost, placesCreateNewNameChange, datesCreateNewDataChange, toggleShowNewPlaceForm, placesUploadLogoChange } from '../actions';
+import { placesCreateAjaxPost, placesRemoveAjaxPost, placesCreateNewNameChange, datesCreateNewDataChange, placesToggleNewPlaceForm, placesUploadLogoChange } from '../actions';
 import PlacesList from '../components/Places/PlacesList';
 import PlaceCreate from '../components/Places/PlaceCreate';
 import './Places.css';
@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
     loading: state.places.loading,
     newPlaceName: state.places.newPlaceName,
     newDateData: state.dates.newDateData,
-    showNewPlaceForm: state.router.showNewPlaceForm
+    showNewPlaceForm: state.places.showNewPlaceForm
   };
 };
 
@@ -24,8 +24,8 @@ export const PlacesListComponent = connect(
       datesCreateNewDataChange: (key, newData) => {
         dispatch(datesCreateNewDataChange(key, newData));
       },
-      toggleShowNewPlaceForm: () => {
-        dispatch(toggleShowNewPlaceForm());
+      placesToggleNewPlaceForm: () => {
+        dispatch(placesToggleNewPlaceForm());
       },
       placesUploadLogoChange: (place, files) => {
         dispatch(placesUploadLogoChange(place, files));
@@ -44,8 +44,8 @@ export const PlaceCreateComponent = connect(
       placesCreateAjaxPost: (newPlaceName) => {
         dispatch(placesCreateAjaxPost(newPlaceName))
       },
-      toggleShowNewPlaceForm: () => {
-        dispatch(toggleShowNewPlaceForm());
+      placesToggleNewPlaceForm: () => {
+        dispatch(placesToggleNewPlaceForm());
       }
     };
   })(PlaceCreate);
