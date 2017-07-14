@@ -50,6 +50,28 @@
     cursor: pointer;
 }
 
+.place-delete-container {
+    float: right;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.place-delete-confirm {
+    font-weight: bold;
+}
+
+.place-delete-container span {
+    display: none;
+}
+
+.place-delete-container input:checked + .place-delete-button + .place-delete-confirm {
+    display: block;
+}
+
+.place-delete-container input:checked + .place-delete-button {
+    display: none;
+}
+
 @media (min-width: 600px) {
     .place-list {
         flex-direction: row;

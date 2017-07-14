@@ -50,9 +50,26 @@
     width: 96%;
 }
 
-.date-delete-button {
+.date-delete-container {
     float: right;
     cursor: pointer;
+    z-index: 3;
+}
+
+.date-delete-confirm {
+    font-weight: bold;
+}
+
+.date-delete-container span {
+    display: none;
+}
+
+.date-delete-container input:checked + .date-delete-button + .date-delete-confirm {
+    display: block;
+}
+
+.date-delete-container input:checked + .date-delete-button {
+    display: none;
 }
 
 .date-place-logo {

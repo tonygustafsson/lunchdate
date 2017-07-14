@@ -19,7 +19,12 @@ const PlacesList = ({ places, placesRemoveAjaxPost, loading, datesCreateNewDataC
                 <a><Icon name="photo" /></a>
                 <input style={{ display: 'none' }} type="file" accept=".png" onChange={e => { placesUploadLogoChange(place, e.target.files) }} />
               </label>
-              <a onClick={() => placesRemoveAjaxPost(place.key)}><Icon name="delete" /></a>
+
+              <label className="place-delete-container">
+                <input type="checkbox" style={{ display: 'none' }} />
+                <i className="material-icons place-delete-button">delete</i>
+                <span className="place-delete-confirm" onClick={() => placesRemoveAjaxPost(place.key)}>Sure?</span>
+              </label>
             </p>
           </div>
         );

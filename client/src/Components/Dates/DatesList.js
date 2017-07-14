@@ -24,25 +24,25 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
       <div className="dates">
         {typeof dates !== "undefined" && dates.map((date) => {
           let place = places.find(function (place) { return place.name === date.place; }),
-              datePlace = date.takeaway ? date.place +  ' (takeaway)' : date.place,
-              placeImageUrl = typeof place !== "undefined" ? place.imageUrl : "";
+            datePlace = date.takeaway ? date.place + ' (takeaway)' : date.place,
+            placeImageUrl = typeof place !== "undefined" ? place.imageUrl : "";
 
           return (
             <div className="date-item" key={date.key}>
               <span className="date-item-title">{datePlace} {date.time}</span>
               <img src={placeImageUrl} alt="Logo" className="date-place-logo" />
 
-              { date.note !== "" &&
+              {date.note !== "" &&
                 <p className="date-item-note">{date.note}</p>
               }
 
-              { date.participants.length > 0 &&
+              {date.participants.length > 0 &&
                 <p className="date-item-participants">
                   Participants: <span dangerouslySetInnerHTML={{ __html: date.participants.join(', ').replace(date.user, '<strong>' + date.user + '</strong>') }} />.
                   </p>
               }
 
-              { date.participants.length < 1 &&
+              {date.participants.length < 1 &&
                 <p className="date-item-participants">No participants.</p>
               }
 
@@ -54,9 +54,11 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
                 <Icon name="cancel" /> No thanks
               </Button>
 
-              <Tooltip label="Delete" className="date-delete-button" style={{ display: date.user === user ? 'block' : 'none' }}>
-                <i className="material-icons date-delete-button" onClick={() => datesRemoveAjaxPost(date.key)}>delete</i>
-              </Tooltip>
+              <label className="date-delete-container">
+                <input type="checkbox" style={{ display: 'none' }} />
+                <i className="material-icons date-delete-button">delete</i>
+                <span className="date-delete-confirm" onClick={() => { datesRemoveAjaxPost(date.key) }}>Sure?</span>
+              </label>
             </div>
           );
         })}
