@@ -54,7 +54,7 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
                 <Icon name="cancel" /> No thanks
               </Button>
 
-              <Tooltip label="Delete" className="date-delete-button">
+              <Tooltip label="Delete" className="date-delete-button" style={{ display: date.user === user ? 'block' : 'none' }}>
                 <i className="material-icons date-delete-button" onClick={() => datesRemoveAjaxPost(date.key)}>delete</i>
               </Tooltip>
             </div>
