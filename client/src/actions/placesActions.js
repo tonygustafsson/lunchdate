@@ -56,8 +56,6 @@ export const placesUploadLogoDone = () => {
     };
 };
 
-//toggleShowNewPlaceForm
-//TOGGLE_NEW_PLACE_FORM
 export const placesToggleNewPlaceForm = () => {
     return {
         type: 'PLACES_TOGGLE_NEW_PLACE_FORM',

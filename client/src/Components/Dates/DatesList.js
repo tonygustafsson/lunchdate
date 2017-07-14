@@ -37,7 +37,9 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
               }
 
               { date.participants.length > 0 &&
-                <p className="date-item-participants">Participants: { date.participants.join(', ').replace(date.user, date.user + ' (host)') }.</p>
+                <p className="date-item-participants">
+                  Participants: <span dangerouslySetInnerHTML={{ __html: date.participants.join(', ').replace(date.user, '<strong>' + date.user + '</strong>') }} />.
+                  </p>
               }
 
               { date.participants.length < 1 &&
