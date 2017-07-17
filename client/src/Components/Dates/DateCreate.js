@@ -18,7 +18,7 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
           newDateData.dateUser = user;
           datesCreateAjaxPost(newDateData)
         }}>
-          <Textfield label="Time" id="newDateTime" name="newDateTime" value={newDateData.dateTime} onChange={e => { datesCreateNewDataChange('dateTime', e.target.value) }} /><br />
+          <Textfield floatingLabel className="date-create-time-input" label="Time" id="newDateTime" name="newDateTime" value={newDateData.dateTime} onChange={e => { datesCreateNewDataChange('dateTime', e.target.value) }} />
 
           <PlacesListComponent />
 
@@ -28,7 +28,7 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
             Take Away
           </Switch>
 
-          <Textfield label="Note" id="newDateNote" name="newDateNote" value={newDateData.dateNote} onChange={e => { datesCreateNewDataChange('dateNote', e.target.value) }} />
+          <Textfield floatingLabel label="Note" id="newDateNote" name="newDateNote" value={newDateData.dateNote} onChange={e => { datesCreateNewDataChange('dateNote', e.target.value) }} />
 
           <div className="create-date-buttons">
             <Button type="button" raised onClick={cancel}><Icon name="undo" /> Cancel</Button>

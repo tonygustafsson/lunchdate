@@ -12,7 +12,7 @@ const PlaceCreate = ({ placesCreateAjaxPost, newPlaceName, placesCreateNewNameCh
       >
         <Dialog open={showNewPlaceForm}>
           <DialogContent>
-            <Textfield label="Place name" name="new-place" value={newPlaceName} onChange={e => { placesCreateNewNameChange(e.target.value) }} /><br />
+            <Textfield floatingLabel label="Place name" name="new-place" value={newPlaceName} onChange={e => { placesCreateNewNameChange(e.target.value) }} /><br />
           </DialogContent>
           <DialogActions>
             <Button raised accent type="submit"><Icon name="save" /> Save</Button>
