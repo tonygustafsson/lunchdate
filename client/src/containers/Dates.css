@@ -33,6 +33,7 @@
     font-size: 200%;
     display: block;
     padding: .5em 0 1em 0;
+    line-height: 1;
 }
 
 .date-item-note {
@@ -98,6 +99,11 @@
 
 .create-date-buttons {
     text-align: center;
+}
+
+.date-create-time-input input {
+    text-align: center;
+    font-size: 250%;
 }
 
 .add-new-date-button {
