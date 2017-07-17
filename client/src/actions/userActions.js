@@ -22,7 +22,11 @@ export const userGetNameFromLocalStorge = () => {
     return (dispatch) => {
         var name = localStorage.getItem('name');
 
-        if (name === undefined) return;
+        if (name === null) {
+            localStorage.setItem('name', 'Anonymous');
+            dispatch(userSetName('Anonymous'));
+            return;
+        }
 
         dispatch(userSetName(name));
     };
