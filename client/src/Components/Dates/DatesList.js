@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip, FABButton, Icon, Button } from 'react-mdl';
+import { FABButton, Icon, Button } from 'react-mdl';
 
 const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, user,
   newDateData, datesShowNewDateForm, showNewDateForm, datesAddParticipantAjaxPost, datesRemoveParticipantAjaxPost }) => {
@@ -54,7 +54,7 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
                 <Icon name="cancel" /> No thanks
               </Button>
 
-              <label className="date-delete-container">
+              <label className="date-delete-container" style={{ display: date.user === user ? 'block' : 'none' }}>
                 <input type="checkbox" style={{ display: 'none' }} />
                 <i className="material-icons date-delete-button">delete</i>
                 <span className="date-delete-confirm" onClick={() => { datesRemoveAjaxPost(date.key) }}>Sure?</span>
