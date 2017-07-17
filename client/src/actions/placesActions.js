@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:8081/lunchdate/place';
+const apiUrl = 'http://52.166.11.201:8081/lunchdate/place';
 
 export const placesListStart = () => {
     return {

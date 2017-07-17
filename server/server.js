@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: '2mb' }));
 app.use(cors());
 
-const clientUrl = 'http://localhost:3000', // For CORS
-	  placeLogoImgPath = '../client/public/img/places/',
+const clientUrl = 'http://lunchdate.westeurope.cloudapp.azure.com', // For CORS
+	  placeLogoImgPath = '/home/tony.gustafsson/lunchdate/client/build/img/places/',
 	  placeTable = 'places',
 	  dateTable = 'dates';
 
