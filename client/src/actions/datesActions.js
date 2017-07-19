@@ -72,6 +72,7 @@ export const datesUpdateList = (responseJson) => {
         responseJson.forEach(date => {
             dates.push({
                 'key': date.id,
+                'date': date.date,
                 'time': date.time,
                 'user': date.user,
                 'place': date.place,
@@ -110,12 +111,12 @@ export const datesCreateAjaxPost = (newDate) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                time: newDate.dateTime,
-                user: newDate.dateUser,
-                place: newDate.datePlace,
-                takeaway: newDate.dateTakeAway,
-                note: newDate.dateNote,
-                participants: [newDate.dateUser]
+                date: newDate.date,
+                time: newDate.time,
+                user: newDate.user,
+                place: newDate.place,
+                takeaway: newDate.takeAway,
+                note: newDate.note
             })
         })
             .then((response) => response.json())

@@ -1,9 +1,10 @@
 const initNewDateData = {
-  dateTime: '12:00',
-  dateUser: '',
-  datePlace: '',
-  dateTakeAway: false,
-  dateNote: ''
+  date: new Date().toISOString().split('T')[0],
+  time: '12:00',
+  user: '',
+  place: '',
+  takeAway: false,
+  note: ''
 }
 
 const initState = {
@@ -18,18 +19,19 @@ const datesReducer = (state = initState, action) => {
     case 'DATES_LIST_DONE':
       return { ...state, loading: false, list: action.payload };
     case 'DATES_CREATE_NEW_DATA_CHANGE':
-      // Temp solution, could not make the key dynamic
       switch (action.key) {
-        case 'dateTime':
-          return { ...state, newDateData: { ...state.newDateData, dateTime: action.payload } };
-        case 'dateUser':
-          return { ...state, newDateData: { ...state.newDateData, dateUser: action.payload } };
-        case 'datePlace':
-          return { ...state, newDateData: { ...state.newDateData, datePlace: action.payload } };
-        case 'dateTakeAway':
-          return { ...state, newDateData: { ...state.newDateData, dateTakeAway: !state.newDateData.dateTakeAway } };
-        case 'dateNote':
-          return { ...state, newDateData: { ...state.newDateData, dateNote: action.payload } };
+        case 'date':
+          return { ...state, newDateData: { ...state.newDateData, date: action.payload } };
+        case 'time':
+          return { ...state, newDateData: { ...state.newDateData, time: action.payload } };
+        case 'user':
+          return { ...state, newDateData: { ...state.newDateData, user: action.payload } };
+        case 'place':
+          return { ...state, newDateData: { ...state.newDateData, place: action.payload } };
+        case 'takeAway':
+          return { ...state, newDateData: { ...state.newDateData, takeAway: !state.newDateData.dateTakeAway } };
+        case 'note':
+          return { ...state, newDateData: { ...state.newDateData, note: action.payload } };
         default:
           return state;
       }
