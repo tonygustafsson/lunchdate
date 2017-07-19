@@ -12,6 +12,7 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "nock": "^9.0.14",
     "react-scripts": "1.0.10"
   },
   "scripts": {

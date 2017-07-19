@@ -1,5 +1,3 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import React from 'react';
 import { userSetName } from '../actions';
 
 export const LocalStorageMiddleware = store => next => action => {
