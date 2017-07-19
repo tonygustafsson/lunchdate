@@ -54,7 +54,9 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
                 <Icon name="cancel" /> No thanks
               </Button>
 
-              <label className="date-delete-container" style={{ display: date.user === user ? 'block' : 'none' }}>
+              <label className="date-delete-container" style={{
+                display: date.user === user && date.participants.length <= 1 ? 'block' : 'none'
+              }}>
                 <input type="checkbox" style={{ display: 'none' }} />
                 <i className="material-icons date-delete-button">delete</i>
                 <span className="date-delete-confirm" onClick={() => { datesRemoveAjaxPost(date.key) }}>Sure?</span>
