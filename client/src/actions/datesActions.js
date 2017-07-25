@@ -86,18 +86,20 @@ export const datesUpdateList = (responseJson) => {
     }
 };
 
-export const datesListAjaxGet = (dispatch) => {
-    dispatch(datesListStart());
+export const datesListAjaxGet = (date = new Date().toISOString().split('T')[0]) => {
+    return (dispatch) => {
+        dispatch(datesListStart());
 
-    fetch(apiUrl + '/list')
-        .then((response) => response.json())
-        .then((responseJson) => {
-            const dates = dispatch(datesUpdateList(responseJson));
-            dispatch(datesListDone(dates));
-        })
-        .catch((error) => {
-            throw (error);
-        });
+        fetch(apiUrl + '/list?date=' + date)
+            .then((response) => response.json())
+            .then((responseJson) => {
+                const dates = dispatch(datesUpdateList(responseJson));
+                dispatch(datesListDone(dates));
+            })
+            .catch((error) => {
+                throw (error);
+            });
+    }
 };
 
 export const datesCreateAjaxPost = (newDate) => {

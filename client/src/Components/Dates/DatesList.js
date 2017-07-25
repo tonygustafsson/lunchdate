@@ -10,7 +10,7 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
   if (dates.length < 1) {
     return (
       <div>
-        <h2>There is no dates today yet :(</h2>
+        <h2>No dates yet :(</h2>
 
         <FABButton colored ripple className="add-new-date-button" onClick={e => { datesShowNewDateForm() }}>
           <Icon name="add" />

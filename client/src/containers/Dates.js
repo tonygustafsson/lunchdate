@@ -20,7 +20,7 @@ export const DatesListComponent = connect(
   mapStateToProps,
   (dispatch) => {
     return {
-      onLoad: (() => { dispatch(datesListAjaxGet); dispatch(placesListAjaxGet); })(),
+      onLoad: (() => { dispatch(datesListAjaxGet()); dispatch(placesListAjaxGet); })(),
       datesRemoveAjaxPost: (id) => { dispatch(datesRemoveAjaxPost(id)) },
       datesShowNewDateForm: () => { dispatch(datesShowNewDateForm()); },
       datesAddParticipantAjaxPost: (dateId, name) => { dispatch(datesAddParticipantAjaxPost(dateId, name)); },
