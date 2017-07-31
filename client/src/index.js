@@ -6,6 +6,7 @@ import reducers from './reducers';
 import thunk from 'redux-thunk';
 import App from './App';
 import { LocalStorageMiddleware } from './middleware/LocalStorageMiddleware.js';
+import registerServiceWorker from './registerServiceWorker';
 
 const myCompose = process.env.NODE_ENV === 'development' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? compose(applyMiddleware(thunk, LocalStorageMiddleware), window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__())
@@ -23,3 +24,5 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
+
+registerServiceWorker();
