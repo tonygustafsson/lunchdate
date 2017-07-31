@@ -1,16 +1,24 @@
 import React from 'react';
-import { FABButton, Icon, Button } from 'react-mdl';
+import { FABButton, Icon, Button, Spinner } from 'react-mdl';
 
-const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, user,
+const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, user, contactServerError, loading,
   newDateData, datesShowNewDateForm, showNewDateForm, datesAddParticipantAjaxPost, datesRemoveParticipantAjaxPost }) => {
   if (showNewDateForm) {
     return null;
   }
 
-  if (dates.length < 1) {
+  if (contactServerError) {
     return (
       <div>
-        <h2>No dates yet :(</h2>
+        <h2 className="error">Could not contact server</h2>
+      </div>
+    );
+  }
+
+  if (dates.length < 1 && !loading) {
+    return (
+      <div>
+        <h2>No dates yet.</h2>
 
         <FABButton colored ripple className="add-new-date-button" onClick={e => { datesShowNewDateForm() }}>
           <Icon name="add" />
@@ -21,6 +29,8 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
 
   return (
     <div className="date-list-container">
+      <Spinner singleColor style={{ display: loading ? 'block' : 'none' }} />
+
       <div className="dates">
         {typeof dates !== "undefined" && dates.map((date) => {
           let place = places.find(function (place) { return place.name === date.place; }),

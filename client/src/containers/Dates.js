@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
     loading: state.dates.loading,
     newDateData: state.dates.newDateData,
     showNewDateForm: state.dates.showNewDateForm,
-    user: state.user.name
+    user: state.user.name,
+    contactServerError: state.dates.contactServerError
   };
 };
 

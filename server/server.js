@@ -143,8 +143,6 @@ const timezoneOffset = () => {
 }
 
 function lunchDateTodaysDatesList(res, showForDate = moment().add(timezoneOffset(), "minutes").toISOString()) {
-	console.log('datelist', showForDate);
-
 	r.table(dateTable)
 		.filter(function (date) {
 			return r.ISO8601(date("time")).date().eq(r.ISO8601(showForDate).date());

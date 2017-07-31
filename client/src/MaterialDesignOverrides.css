@@ -10,7 +10,18 @@
     text-shadow: none;
 }
 
-.material-icons {
+.app .material-icons {
     vertical-align: middle;
 }
 
+.app .mdl-spinner--single-color {
+    position: absolute;
+    left: calc(50% - 17px);
+    top: 75px;
+    width: 34px;
+    height: 34px;
+}
+
+.app .mdl-spinner--single-color div {
+    border-color: #fff;
+}

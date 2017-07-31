@@ -13,8 +13,18 @@ const placesReducer = (state = initState, action) => {
       return { ...state, showNewPlaceForm: !state.showNewPlaceForm };
     case 'PLACES_CREATE_NEW_NAME_CHANGE':
       return { ...state, newPlaceName: action.payload }
+    case 'PLACES_CREATE_START':
+      return { ...state, loading: true }
     case 'PLACES_CREATE_DONE':
-      return { ...state, newPlaceName: '' }
+      return { ...state, newPlaceName: '', loading: false }
+    case 'PLACES_REMOVE_START':
+      return { ...state, loading: true }
+    case 'PLACES_REMOVE_DONE':
+      return { ...state, loading: false }
+    case 'PLACES_UPLOAD_LOGO_START':
+      return { ...state, loading: true }
+    case 'PLACES_UPLOAD_LOGO_DONE':
+      return { ...state, newPlaceName: '', loading: false }
     default:
       return state;
   }

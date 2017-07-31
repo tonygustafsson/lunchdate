@@ -1,9 +1,11 @@
 import React from 'react';
-import { Checkbox, Icon } from 'react-mdl';
+import { Checkbox, Icon, Spinner } from 'react-mdl';
 
 const PlacesList = ({ places, placesRemoveAjaxPost, loading, datesCreateNewDataChange, newDateData, placesUploadLogoChange }) => {
   return (
     <div className="place-list">
+      <Spinner singleColor style={{ display: loading ? 'block' : 'none' }} />
+
       {typeof places !== "undefined" && places.map((place) => {
         return (
           <div className="place-list-item" key={place.key} onClick={e => { datesCreateNewDataChange('place', place.name) }}>

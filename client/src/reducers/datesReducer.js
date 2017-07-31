@@ -16,7 +16,8 @@ const initState = {
   calendarEditMode: false,
   loading: true,
   newDateData: initNewDateData,
-  showNewDateForm: false
+  showNewDateForm: false,
+  contactServerError: false
 };
 
 const datesReducer = (state = initState, action) => {
@@ -44,6 +45,12 @@ const datesReducer = (state = initState, action) => {
       return { ...state, showNewDateForm: !state.showNewDateForm };
     case 'DATES_CREATE_RESET':
       return { ...state, newDateData: initNewDateData };
+    case 'DATES_CREATE_START':
+      return { ...state, loading: true };
+    case 'DATES_REMOVE_START':
+      return { ...state, loading: true };
+    case 'DATES_REMOVE_DONE':
+      return { ...state, loading: false };
     case 'DATES_CREATE_DONE':
       return { ...state };
     case 'DATES_ADD_PARTICIPANT_START':
@@ -56,6 +63,8 @@ const datesReducer = (state = initState, action) => {
       return { ...state, showDatesForDateTemp: action.payload };
     case 'CALENDAR_SET_DATE':
       return { ...state, showDatesForDate: action.payload, calendarEditMode: !state.calendarEditMode };
+    case 'DATES_CONTACT_SERVER_ERROR':
+      return { ...state, contactServerError: action.payload };
     default:
       return state;
   }

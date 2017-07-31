@@ -23,7 +23,7 @@ export const datesCreateNewDataChange = (key, newData) => {
 
 export const datesCreateBegin = () => {
     return {
-        type: 'DATES_CREATE_BEGIN'
+        type: 'DATES_CREATE_START'
     };
 };
 
@@ -65,6 +65,13 @@ export const datesShowNewDateForm = () => {
     };
 };
 
+export const datesContactServerError = (error) => {
+    return {
+        type: 'DATES_CONTACT_SERVER_ERROR',
+        payload: error
+    };
+};
+
 export const datesUpdateList = (responseJson) => {
     return () => {
         var dates = [];
@@ -97,7 +104,7 @@ export const datesListAjaxGet = (date = new Date().toISOString().split('T')[0]) 
                 dispatch(datesListDone(dates));
             })
             .catch((error) => {
-                throw (error);
+                dispatch(datesContactServerError(error));
             });
     }
 };
