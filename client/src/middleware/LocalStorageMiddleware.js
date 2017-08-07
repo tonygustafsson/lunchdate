@@ -10,6 +10,7 @@ export const LocalStorageMiddleware = store => next => action => {
             return next(action);
         case 'GET_NAME_FROM_LOCALSTORAGE':
             var value = window.localStorage.getItem('name');
+            value = value !== null ? value : 'Anonymous';
             store.dispatch(userSetName(value));
             return next(action);
         default:
