@@ -1,4 +1,4 @@
-const apiUrl = 'http://52.166.11.201:8081/lunchdate/date';
+const apiUrl = 'http://lunchdate.westeurope.cloudapp.azure.com:8081/lunchdate/date';
 
 export const datesListStart = () => {
     return {
