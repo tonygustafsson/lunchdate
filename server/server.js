@@ -119,12 +119,12 @@ app.post('/lunchdate/place/uploadLogo', function (req, res) {
 
 /* Dates */
 
-const getDateFromTime = (time) => {
+const getUTCTime = (date, time) => {
 	const 	timeInfo = time.split(':'),
 		  	hour = parseInt(timeInfo[0]),
 			minute = parseInt(timeInfo[1]),
 			second = 0,
-			jsDate = new Date(),
+			jsDate = new Date(date),
 			year = jsDate.getUTCFullYear(),
 			month = jsDate.getUTCMonth(),
 			day = jsDate.getUTCDate();
@@ -138,10 +138,14 @@ const getTimeFromDate = (time) => {
 	return moment(time).format('HH:mm');
 };
 
-function lunchDateTodaysDatesList(res) {
+const timezoneOffset = () => {
+	return moment().utcOffset();
+}
+
+function lunchDateTodaysDatesList(res, showForDate = moment().add(timezoneOffset(), "minutes").toISOString()) {
 	r.table(dateTable)
 		.filter(function (date) {
-			return r.ISO8601(date("time")).date().eq(r.now().date());
+			return r.ISO8601(date("time")).date().eq(r.ISO8601(showForDate).date());
 		})
 		.orderBy('time')
 		.run(connection, function (err, cursor) {
@@ -162,19 +166,28 @@ function lunchDateTodaysDatesList(res) {
 app.get('/lunchdate/date/list', function (req, res) {
 	res.header('Access-Control-Allow-Origin', clientUrl);
 
-	lunchDateTodaysDatesList(res);
+	let date = req.query.date;
+
+	if (!moment(date).isValid()) {
+		res.status(500).send('Not a valid date.');
+		return;
+	}
+
+	date = moment(date).add(timezoneOffset(), "minutes").toISOString();
+
+	lunchDateTodaysDatesList(res, date);
 });
 
 app.post('/lunchdate/date/create', function (req, res) {
 	res.header('Access-Control-Allow-Origin', clientUrl);
 	res.header('Access-Control-Allow-Methods', 'POST');
 
-	var time = getDateFromTime(req.body.time),
+	const time = getUTCTime(req.body.date, req.body.time),
 		user = req.body.user,
 		place = req.body.place,
 		takeaway = req.body.takeaway,
 		note = req.body.note,
-		participants = req.body.participants;
+		participants = [ req.body.user ];
 
 	if (time === "" || user === "" || place === "") {
 		res.status(500).send('Time, user or place cannot be an empty value.');

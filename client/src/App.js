@@ -6,18 +6,24 @@ import 'react-mdl/extra/material.js';
 
 import { DatesListComponent, DatesCreateComponent } from './containers/Dates';
 import { UserListComponent, UserEditComponent } from './containers/User';
+import { CalendarListComponent, CalendarEditComponent } from './containers/Calendar';
 
 const App = () => {
     return (
         <div className="app">
-          <h1>Lunch date</h1>
+            <h1>Lunch date</h1>
 
-          <UserEditComponent />
-          <UserListComponent />
+            <div className="site-settings-menu">
+                <UserEditComponent />
+                <UserListComponent />
 
-          <DatesCreateComponent />
-          <DatesListComponent />
-      </div>
+                <CalendarEditComponent />
+                <CalendarListComponent />
+            </div>
+
+            <DatesCreateComponent />
+            <DatesListComponent />
+        </div>
     );
 }
 

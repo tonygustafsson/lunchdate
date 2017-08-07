@@ -19,7 +19,7 @@ body {
 }
 
 .app h1, .app h2, .app h3 {
-  padding: 0 1em;
+  padding: .5em 1em 0 1em;
 
   font-family: 'Amarante', cursive !important; /* Sorry */
   font-size: 300%;
@@ -32,6 +32,22 @@ body {
 
 .app h2, .app h3 {
   font-size: 200%;
+}
+
+.app h2.error {
+  color: red;
+}
+
+.site-settings-menu {
+    position: absolute;
+    top: -1em;
+    right: 1em;
+    width: 300px;
+
+    color: #fff;
+    text-shadow: 2px 1px 1px #000;
+    text-align: right;
+    cursor: pointer;
 }
 
 @media (min-width: 600px) {

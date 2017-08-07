@@ -19,23 +19,14 @@ export const userToggleEditMode = () => {
 };
 
 export const userGetNameFromLocalStorge = () => {
-    return (dispatch) => {
-        var name = localStorage.getItem('name');
-
-        if (name === null) {
-            localStorage.setItem('name', 'Anonymous');
-            dispatch(userSetName('Anonymous'));
-            return;
-        }
-
-        dispatch(userSetName(name));
+    return {
+        type: 'GET_NAME_FROM_LOCALSTORAGE'
     };
 };
 
-export const userSaveNameToLocalStorge = (name) => {
-    return (dispatch) => {
-        localStorage.setItem('name', name);
-
-        dispatch(userSetName(name));
+export const userSaveNameToLocalStorge = (value) => {
+    return {
+        type: 'SET_NAME_TO_LOCALSTORAGE',
+        payload: value
     };
 };

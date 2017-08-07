@@ -23,7 +23,7 @@ export const datesCreateNewDataChange = (key, newData) => {
 
 export const datesCreateBegin = () => {
     return {
-        type: 'DATES_CREATE_BEGIN'
+        type: 'DATES_CREATE_START'
     };
 };
 
@@ -65,6 +65,13 @@ export const datesShowNewDateForm = () => {
     };
 };
 
+export const datesContactServerError = (error) => {
+    return {
+        type: 'DATES_CONTACT_SERVER_ERROR',
+        payload: error
+    };
+};
+
 export const datesUpdateList = (responseJson) => {
     return () => {
         var dates = [];
@@ -72,6 +79,7 @@ export const datesUpdateList = (responseJson) => {
         responseJson.forEach(date => {
             dates.push({
                 'key': date.id,
+                'date': date.date,
                 'time': date.time,
                 'user': date.user,
                 'place': date.place,
@@ -85,18 +93,20 @@ export const datesUpdateList = (responseJson) => {
     }
 };
 
-export const datesListAjaxGet = (dispatch) => {
-    dispatch(datesListStart());
+export const datesListAjaxGet = (date = new Date().toISOString().split('T')[0]) => {
+    return (dispatch) => {
+        dispatch(datesListStart());
 
-    fetch(apiUrl + '/list')
-        .then((response) => response.json())
-        .then((responseJson) => {
-            const dates = dispatch(datesUpdateList(responseJson));
-            dispatch(datesListDone(dates));
-        })
-        .catch((error) => {
-            throw (error);
-        });
+        fetch(apiUrl + '/list?date=' + date)
+            .then((response) => response.json())
+            .then((responseJson) => {
+                const dates = dispatch(datesUpdateList(responseJson));
+                dispatch(datesListDone(dates));
+            })
+            .catch((error) => {
+                dispatch(datesContactServerError(error));
+            });
+    }
 };
 
 export const datesCreateAjaxPost = (newDate) => {
@@ -110,12 +120,12 @@ export const datesCreateAjaxPost = (newDate) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                time: newDate.dateTime,
-                user: newDate.dateUser,
-                place: newDate.datePlace,
-                takeaway: newDate.dateTakeAway,
-                note: newDate.dateNote,
-                participants: [newDate.dateUser]
+                date: newDate.date,
+                time: newDate.time,
+                user: newDate.user,
+                place: newDate.place,
+                takeaway: newDate.takeAway,
+                note: newDate.note
             })
         })
             .then((response) => response.json())

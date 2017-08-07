@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
     loading: state.dates.loading,
     newDateData: state.dates.newDateData,
     showNewDateForm: state.dates.showNewDateForm,
-    user: state.user.name
+    user: state.user.name,
+    contactServerError: state.dates.contactServerError
   };
 };
 
@@ -20,7 +21,7 @@ export const DatesListComponent = connect(
   mapStateToProps,
   (dispatch) => {
     return {
-      onLoad: (() => { dispatch(datesListAjaxGet); dispatch(placesListAjaxGet); })(),
+      onLoad: (() => { dispatch(datesListAjaxGet()); dispatch(placesListAjaxGet); })(),
       datesRemoveAjaxPost: (id) => { dispatch(datesRemoveAjaxPost(id)) },
       datesShowNewDateForm: () => { dispatch(datesShowNewDateForm()); },
       datesAddParticipantAjaxPost: (dateId, name) => { dispatch(datesAddParticipantAjaxPost(dateId, name)); },

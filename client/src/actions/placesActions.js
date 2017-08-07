@@ -22,7 +22,7 @@ export const placesCreateNewNameChange = newName => {
 
 export const placesCreateBegin = () => {
     return {
-        type: 'PLACES_CREATE_BEGIN'
+        type: 'PLACES_CREATE_START'
     };
 };
 

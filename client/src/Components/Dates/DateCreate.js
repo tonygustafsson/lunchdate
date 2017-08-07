@@ -15,20 +15,21 @@ const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData
 
         <form method="post" onSubmit={e => {
           e.preventDefault();
-          newDateData.dateUser = user;
-          datesCreateAjaxPost(newDateData)
+          newDateData.user = user;
+          datesCreateAjaxPost(newDateData);
         }}>
-          <Textfield floatingLabel className="date-create-time-input" label="Time" id="newDateTime" name="newDateTime" value={newDateData.dateTime} onChange={e => { datesCreateNewDataChange('dateTime', e.target.value) }} />
+          <Textfield type="date" floatingLabel className="date-create-date-input" label="Date" id="date" name="date" value={newDateData.date} onChange={e => { datesCreateNewDataChange('date', e.target.value) }} />
+          <Textfield floatingLabel className="date-create-time-input" label="Time" id="time" name="time" value={newDateData.time} onChange={e => { datesCreateNewDataChange('time', e.target.value) }} />
 
           <PlacesListComponent />
 
           <Button type="button" raised className="add-new-place-button" onClick={placesToggleNewPlaceForm}><Icon name="add" /> Add new place</Button>
 
-          <Switch ripple className="create-date-switch" id="newDateTakeAway" name="newDateTakeAway" checked={newDateData.dateTakeAway} onChange={e => { datesCreateNewDataChange('dateTakeAway', e.target.checked) }}>
+          <Switch ripple className="create-date-switch" id="takeAway" name="takeAway" checked={newDateData.takeAway} onChange={e => { datesCreateNewDataChange('takeAway', e.target.checked) }}>
             Take Away
           </Switch>
 
-          <Textfield floatingLabel label="Note" id="newDateNote" name="newDateNote" value={newDateData.dateNote} onChange={e => { datesCreateNewDataChange('dateNote', e.target.value) }} />
+          <Textfield floatingLabel label="Note" id="note" name="note" value={newDateData.note} onChange={e => { datesCreateNewDataChange('note', e.target.value) }} />
 
           <div className="create-date-buttons">
             <Button type="button" raised onClick={cancel}><Icon name="undo" /> Cancel</Button>
