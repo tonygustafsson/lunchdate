@@ -1,6 +1,6 @@
 .app h1, .app h2, .app h3 {
   display: inline-block;  
-  padding: .5em 1em 0 1em;
+  padding: 1em 1em 0 1em;
 
   font-family: 'Amarante', cursive !important; /* Sorry */
   font-size: 300%;
@@ -24,17 +24,35 @@
 .app button.create-date-button {
   display: inline-block;
   width: 80%;  
+  margin: 0 10% 1em 10%;
+}
+
+.anonymous-warning {
   margin: 0 10%;
+  
+  color: #fff;
+  text-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+  cursor: pointer;
+}
+
+.anonymous-warning .material-icons {
+  margin-right: .5em;
+  vertical-align: bottom;
 }
 
 @media (min-width: 600px) {
   .app h1 {
     font-size: 400%;
     text-align: left;
+    padding-top: .5em;
   }
 
   .app button.create-date-button {
       width: auto;
       margin: -2.5em auto auto auto;
+  }
+
+  .anonymous-warning {
+    margin: 0 5%;
   }
 }
