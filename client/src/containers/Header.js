@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { datesShowNewDateForm, userToggleEditMode } from '../actions';
-import Header from '../Components/Header/Header';
+import Header from '../components/Header/Header';
 import './Header.css';
 
 const mapStateToProps = (state, ownProps) => {

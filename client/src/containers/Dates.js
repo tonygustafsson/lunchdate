@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { datesListAjaxGet, placesListAjaxGet, datesCreateAjaxPost, datesRemoveAjaxPost, datesAddParticipantAjaxPost,
           datesRemoveParticipantAjaxPost, datesCreateNewDataChange, datesShowNewDateForm, datesCreateReset, placesToggleNewPlaceForm } from '../actions';
-import DatesList from '../Components/Dates/DatesList';
-import DateCreate from '../Components/Dates/DateCreate';
+import DatesList from '../components/Dates/DatesList';
+import DateCreate from '../components/Dates/DateCreate';
 import './Dates.css';
 
 const mapStateToProps = (state, ownProps) => {

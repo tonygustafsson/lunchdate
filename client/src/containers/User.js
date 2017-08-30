@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { userSaveNameToLocalStorge, userGetNameFromLocalStorge, userSetName, userEditNameChange, userToggleEditMode } from '../actions';
-import UserList from '../Components/User/UserList';
-import UserEdit from '../Components/User/UserEdit';
+import UserList from '../components/User/UserList';
+import UserEdit from '../components/User/UserEdit';
 import './User.css';
 
 const mapStateToProps = (state, ownProps) => {
