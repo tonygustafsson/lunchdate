@@ -35,7 +35,7 @@ const datesReducer = (state = initState, action) => {
         case 'place':
           return { ...state, newDateData: { ...state.newDateData, place: action.payload } };
         case 'takeAway':
-          return { ...state, newDateData: { ...state.newDateData, takeAway: !state.newDateData.dateTakeAway } };
+          return { ...state, newDateData: { ...state.newDateData, takeAway: action.payload } };
         case 'note':
           return { ...state, newDateData: { ...state.newDateData, note: action.payload } };
         default:
