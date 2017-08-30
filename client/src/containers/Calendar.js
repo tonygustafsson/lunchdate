@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { calendarToggleEditMode, calendarSetDate, calendarChangeDate, datesListAjaxGet } from '../actions';
-import CalendarList from '../components/Calendar/CalendarList';
-import CalendarEdit from '../components/Calendar/CalendarEdit';
+import CalendarList from '../Components/Calendar/CalendarList';
+import CalendarEdit from '../Components/Calendar/CalendarEdit';
 import './Calendar.css';
 
 const mapStateToProps = (state, ownProps) => {

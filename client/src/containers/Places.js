@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { placesCreateAjaxPost, placesRemoveAjaxPost, placesCreateNewNameChange, datesCreateNewDataChange, placesToggleNewPlaceForm, placesUploadLogoChange } from '../actions';
-import PlacesList from '../components/Places/PlacesList';
-import PlaceCreate from '../components/Places/PlaceCreate';
+import PlacesList from '../Components/Places/PlacesList';
+import PlaceCreate from '../Components/Places/PlaceCreate';
 import './Places.css';
 
 const mapStateToProps = (state, ownProps) => {
