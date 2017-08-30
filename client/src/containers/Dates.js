@@ -23,7 +23,7 @@ export const DatesListComponent = connect(
     return {
       onLoad: (() => { dispatch(datesListAjaxGet()); dispatch(placesListAjaxGet); })(),
       datesRemoveAjaxPost: (id) => { dispatch(datesRemoveAjaxPost(id)) },
-      datesShowNewDateForm: () => { dispatch(datesShowNewDateForm()); },
+      datesShowNewDateForm: (showNewDateForm) => { dispatch(datesShowNewDateForm(showNewDateForm)); },
       datesAddParticipantAjaxPost: (dateId, name) => { dispatch(datesAddParticipantAjaxPost(dateId, name)); },
       datesRemoveParticipantAjaxPost: (dateId, name) => { dispatch(datesRemoveParticipantAjaxPost(dateId, name)); }
     };

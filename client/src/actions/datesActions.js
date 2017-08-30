@@ -59,9 +59,10 @@ export const datesRemoveParticipantStart = (name) => {
     };
 };
 
-export const datesShowNewDateForm = () => {
+export const datesShowNewDateForm = (showNewDateForm) => {
     return {
-        type: 'DATES_SHOW_NEW_DATE_FORM'
+        type: 'DATES_SHOW_NEW_DATE_FORM',
+        payload: showNewDateForm,
     };
 };
 

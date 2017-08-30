@@ -1,5 +1,5 @@
 import React from 'react';
-import { FABButton, Icon, Button, Spinner } from 'react-mdl';
+import { Icon, Button, Spinner } from 'react-mdl';
 
 const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, user, contactServerError, loading,
   newDateData, datesShowNewDateForm, showNewDateForm, datesAddParticipantAjaxPost, datesRemoveParticipantAjaxPost }) => {
@@ -17,13 +17,7 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
 
   if (dates.length < 1 && !loading) {
     return (
-      <div>
         <h2>No dates yet.</h2>
-
-        <FABButton colored ripple className="add-new-date-button" onClick={e => { datesShowNewDateForm() }}>
-          <Icon name="add" />
-        </FABButton>
-      </div>
     );
   }
 
@@ -75,10 +69,6 @@ const DatesList = ({ dates, places, datesCreateAjaxPost, datesRemoveAjaxPost, us
           );
         })}
       </div>
-
-      <FABButton colored ripple className="add-new-date-button" onClick={e => { datesShowNewDateForm() }}>
-        <Icon name="add" />
-      </FABButton>
     </div>
   );
 }

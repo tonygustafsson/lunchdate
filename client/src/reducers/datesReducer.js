@@ -42,7 +42,7 @@ const datesReducer = (state = initState, action) => {
           return state;
       }
     case 'DATES_SHOW_NEW_DATE_FORM':
-      return { ...state, showNewDateForm: !state.showNewDateForm };
+      return { ...state, showNewDateForm: action.payload };
     case 'DATES_CREATE_RESET':
       return { ...state, newDateData: initNewDateData };
     case 'DATES_CREATE_START':

@@ -1,0 +1,40 @@
+.app h1, .app h2, .app h3 {
+  display: inline-block;  
+  padding: .5em 1em 0 1em;
+
+  font-family: 'Amarante', cursive !important; /* Sorry */
+  font-size: 300%;
+  text-align: left;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+  text-align: center;
+  cursor: pointer;
+}
+
+.app h2, .app h3 {
+  display: block;
+  font-size: 200%;
+}
+
+.app h2.error {
+  color: red;
+}
+
+.app button.create-date-button {
+  display: inline-block;
+  width: 80%;  
+  margin: 0 10%;
+}
+
+@media (min-width: 600px) {
+  .app h1 {
+    font-size: 400%;
+    text-align: left;
+  }
+
+  .app button.create-date-button {
+      width: auto;
+      margin: -2.5em auto auto auto;
+  }
+}

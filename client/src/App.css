@@ -18,29 +18,9 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.app h1, .app h2, .app h3 {
-  padding: .5em 1em 0 1em;
-
-  font-family: 'Amarante', cursive !important; /* Sorry */
-  font-size: 300%;
-  text-align: left;
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow: 2px 2px 2px #000;
-  text-align: center;
-}
-
-.app h2, .app h3 {
-  font-size: 200%;
-}
-
-.app h2.error {
-  color: red;
-}
-
 .site-settings-menu {
     position: absolute;
-    top: -1em;
+    top: 1em;
     right: 1em;
     width: 300px;
 
@@ -48,11 +28,4 @@ body {
     text-shadow: 2px 1px 1px #000;
     text-align: right;
     cursor: pointer;
-}
-
-@media (min-width: 600px) {
-  .app h1 {
-    font-size: 400%;
-    text-align: left;
-  }
 }
