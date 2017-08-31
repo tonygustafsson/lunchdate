@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { datesListAjaxGet, placesListAjaxGet, datesCreateAjaxPost, datesRemoveAjaxPost, datesAddParticipantAjaxPost,
-          datesRemoveParticipantAjaxPost, datesCreateNewDataChange, datesShowNewDateForm, datesCreateReset, placesToggleNewPlaceForm } from '../actions';
+          datesRemoveParticipantAjaxPost, datesShowNewDateForm, datesCreateReset, placesToggleNewPlaceForm } from '../actions';
 import DatesList from '../components/Dates/DatesList';
 import DateCreate from '../components/Dates/DateCreate';
 import './Dates.css';
@@ -34,9 +34,6 @@ export const DatesCreateComponent = connect(
   mapStateToProps,
   (dispatch) => {
     return {
-      datesCreateNewDataChange: (key, newData) => {
-        dispatch(datesCreateNewDataChange(key, newData));
-      },
       datesCreateAjaxPost: (newDateData) => {
         dispatch(datesCreateAjaxPost(newDateData));
         dispatch(datesCreateReset());
@@ -48,6 +45,6 @@ export const DatesCreateComponent = connect(
       },
       placesToggleNewPlaceForm: () => {
         dispatch(placesToggleNewPlaceForm());
-      }
+      },
     };
   })(DateCreate);

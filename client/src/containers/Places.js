@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { placesCreateAjaxPost, placesRemoveAjaxPost, placesCreateNewNameChange, datesCreateNewDataChange, placesToggleNewPlaceForm, placesUploadLogoChange } from '../actions';
+import { placesCreateAjaxPost, placesRemoveAjaxPost, placesCreateNewNameChange, placesToggleNewPlaceForm, placesUploadLogoChange } from '../actions';
 import PlacesList from '../components/Places/PlacesList';
 import PlaceCreate from '../components/Places/PlaceCreate';
 import './Places.css';
@@ -20,9 +20,6 @@ export const PlacesListComponent = connect(
     return {
       placesRemoveAjaxPost: (id) => {
         dispatch(placesRemoveAjaxPost(id))
-      },
-      datesCreateNewDataChange: (key, newData) => {
-        dispatch(datesCreateNewDataChange(key, newData));
       },
       placesToggleNewPlaceForm: () => {
         dispatch(placesToggleNewPlaceForm());

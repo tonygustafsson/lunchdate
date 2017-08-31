@@ -2,45 +2,69 @@ import React from 'react';
 import { Textfield, Button, Switch, Icon } from 'react-mdl';
 import { PlaceCreateComponent, PlacesListComponent } from '../../containers/Places';
 
-const DateCreate = ({ datesCreateAjaxPost, datesCreateNewDataChange, newDateData, places, showNewDateForm, cancel, placesToggleNewPlaceForm, user }) => {
-  if (!showNewDateForm) {
-    return null;
+export default class DateCreate extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const currentISODate = new Date().toISOString().split('T')[0];
+
+    this.state = {
+      date: currentISODate,
+      time: '12:00',
+      place: '',
+      takeAway: false,
+      note: '',
+    };
   }
 
-  return (
-    <div>
-      <h2>Create new date</h2>
+  changeDateData(key, value) {
+    this.setState({
+      [key]: value,
+    });
+  }
 
-      <div className="create-date-container">
+  submitData(e) {
+    e.preventDefault();
 
-        <form method="post" onSubmit={e => {
-          e.preventDefault();
-          newDateData.user = user;
-          datesCreateAjaxPost(newDateData);
-        }}>
-          <Textfield type="date" floatingLabel className="date-create-date-input" label="Date" id="date" name="date" value={newDateData.date} onChange={e => { datesCreateNewDataChange('date', e.target.value) }} />
-          <Textfield floatingLabel className="date-create-time-input" label="Time" id="time" name="time" value={newDateData.time} onChange={e => { datesCreateNewDataChange('time', e.target.value) }} />
+    let data = this.state;
+    data.user = this.props.user;
 
-          <PlacesListComponent />
+    this.props.datesCreateAjaxPost(data);
+  }
 
-          <Button type="button" raised className="add-new-place-button" onClick={placesToggleNewPlaceForm}><Icon name="add" /> Add new place</Button>
+  render() {
+    if (!this.props.showNewDateForm) {
+      return null;
+    }
 
-          <Switch ripple className="create-date-switch" id="takeAway" name="takeAway" checked={newDateData.takeAway} onChange={e => { datesCreateNewDataChange('takeAway', e.target.checked) }}>
-            Take Away
-          </Switch>
+    return (
+      <div>
+        <h2>Create new date</h2>
 
-          <Textfield floatingLabel label="Note" id="note" name="note" value={newDateData.note} onChange={e => { datesCreateNewDataChange('note', e.target.value) }} />
+        <div className="create-date-container">
+          <form method="post" onSubmit={e => { this.submitData(e); }}>
+            <Textfield type="date" floatingLabel className="date-create-date-input" label="Date" id="date" name="date" value={this.state.date} onChange={e => { this.changeDateData('date', e.target.value) }} />
+            <Textfield floatingLabel className="date-create-time-input" label="Time" id="time" name="time" value={this.state.time} onChange={e => { this.changeDateData('time', e.target.value) }} />
 
-          <div className="create-date-buttons">
-            <Button type="button" raised onClick={cancel}><Icon name="undo" /> Cancel</Button>
-            <Button raised accent type="submit"><Icon name="save" /> Save</Button>
-          </div>
-        </form>
+            <PlacesListComponent selectedPlace={this.state.place} changeDateData={(key, value) => this.changeDateData(key, value)} />
 
-        <PlaceCreateComponent />
+            <Button type="button" raised className="add-new-place-button" onClick={this.props.placesToggleNewPlaceForm}><Icon name="add" /> Add new place</Button>
+
+            <Switch ripple className="create-date-switch" id="takeAway" name="takeAway" checked={this.state.takeAway} onChange={e => { this.changeDateData('takeAway', e.target.checked) }}>
+              Take Away
+            </Switch>
+
+            <Textfield floatingLabel label="Note" id="note" name="note" value={this.state.note} onChange={e => { this.changeDateData('note', e.target.value) }} />
+
+            <div className="create-date-buttons">
+              <Button type="button" raised onClick={this.props.cancel}><Icon name="undo" /> Cancel</Button>
+              <Button raised accent type="submit"><Icon name="save" /> Save</Button>
+            </div>
+          </form>
+
+          <PlaceCreateComponent />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-export default DateCreate;

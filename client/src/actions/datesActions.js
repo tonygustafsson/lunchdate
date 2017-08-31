@@ -13,14 +13,6 @@ export const datesListDone = dates => {
     };
 };
 
-export const datesCreateNewDataChange = (key, newData) => {
-    return {
-        type: 'DATES_CREATE_NEW_DATA_CHANGE',
-        key: key,
-        payload: newData
-    };
-};
-
 export const datesCreateBegin = () => {
     return {
         type: 'DATES_CREATE_START'
