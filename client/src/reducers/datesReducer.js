@@ -1,21 +1,11 @@
 const currentISODate = new Date().toISOString().split('T')[0];
 
-const initNewDateData = {
-  date: currentISODate,
-  time: '12:00',
-  user: '',
-  place: '',
-  takeAway: false,
-  note: ''
-}
-
 const initState = {
   list: [],
   showDatesForDate: currentISODate,
   showDatesForDateTemp: currentISODate,
   calendarEditMode: false,
   loading: true,
-  newDateData: initNewDateData,
   showNewDateForm: false,
   contactServerError: false
 };
@@ -43,8 +33,6 @@ const datesReducer = (state = initState, action) => {
       }
     case 'DATES_SHOW_NEW_DATE_FORM':
       return { ...state, showNewDateForm: action.payload };
-    case 'DATES_CREATE_RESET':
-      return { ...state, newDateData: initNewDateData };
     case 'DATES_CREATE_START':
       return { ...state, loading: true };
     case 'DATES_REMOVE_START':

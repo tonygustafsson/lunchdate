@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { datesListAjaxGet, placesListAjaxGet, datesCreateAjaxPost, datesRemoveAjaxPost, datesAddParticipantAjaxPost,
-          datesRemoveParticipantAjaxPost, datesShowNewDateForm, datesCreateReset, placesToggleNewPlaceForm } from '../actions';
+          datesRemoveParticipantAjaxPost, datesShowNewDateForm, placesToggleNewPlaceForm } from '../actions';
 import DatesList from '../components/Dates/DatesList';
 import DateCreate from '../components/Dates/DateCreate';
 import './Dates.css';
@@ -36,11 +36,9 @@ export const DatesCreateComponent = connect(
     return {
       datesCreateAjaxPost: (newDateData) => {
         dispatch(datesCreateAjaxPost(newDateData));
-        dispatch(datesCreateReset());
         dispatch(datesShowNewDateForm());
       },
       cancel: () => {
-        dispatch(datesCreateReset());
         dispatch(datesShowNewDateForm());
       },
       placesToggleNewPlaceForm: () => {

@@ -8,7 +8,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     places: state.places.list,
     loading: state.places.loading,
-    newPlaceName: state.places.newPlaceName,
     newDateData: state.dates.newDateData,
     showNewPlaceForm: state.places.showNewPlaceForm
   };
@@ -35,9 +34,6 @@ export const PlaceCreateComponent = connect(
   mapStateToProps,
   (dispatch) => {
     return {
-      placesCreateNewNameChange: (newPlaceName) => {
-        dispatch(placesCreateNewNameChange(newPlaceName))
-      },
       placesCreateAjaxPost: (newPlaceName) => {
         dispatch(placesCreateAjaxPost(newPlaceName))
       },
