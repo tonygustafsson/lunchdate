@@ -4,13 +4,6 @@ export const calendarToggleEditMode = dates => {
     };
 };
 
-export const calendarChangeDate = (date) => {
-    return {
-        type: 'CALENDAR_CHANGE_DATE',
-        payload: date
-    };
-};
-
 export const calendarSetDate = (date) => {
     return {
         type: 'CALENDAR_SET_DATE',

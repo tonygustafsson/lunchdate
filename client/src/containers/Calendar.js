@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { calendarToggleEditMode, calendarSetDate, calendarChangeDate, datesListAjaxGet } from '../actions';
+import { calendarToggleEditMode, calendarSetDate, datesListAjaxGet } from '../actions';
 import CalendarList from '../components/Calendar/CalendarList';
 import CalendarEdit from '../components/Calendar/CalendarEdit';
 import './Calendar.css';
@@ -25,7 +25,6 @@ export const CalendarEditComponent = connect(
   mapStateToProps,
   (dispatch) => {
     return {
-      calendarChangeDate: (date) => { dispatch(calendarChangeDate(date)); },
       calendarSetDate: (date) => { dispatch(calendarSetDate(date)); dispatch(datesListAjaxGet(date)); },
       calendarToggleEditMode: () => { dispatch(calendarToggleEditMode()); }
     };

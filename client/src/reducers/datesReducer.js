@@ -47,8 +47,6 @@ const datesReducer = (state = initState, action) => {
       return { ...state, loading: false, list: action.payload };
     case 'CALENDAR_TOGGLE_EDIT_MODE':
       return { ...state, calendarEditMode: !state.calendarEditMode };
-    case 'CALENDAR_CHANGE_DATE':
-      return { ...state, showDatesForDateTemp: action.payload };
     case 'CALENDAR_SET_DATE':
       return { ...state, showDatesForDate: action.payload, calendarEditMode: !state.calendarEditMode };
     case 'DATES_CONTACT_SERVER_ERROR':

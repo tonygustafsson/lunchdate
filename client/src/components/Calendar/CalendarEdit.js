@@ -1,20 +1,28 @@
 import React from 'react';
 import { Textfield, Button } from 'react-mdl';
 
-const CalendarEdit = ({ showDatesForDate, showDatesForDateTemp, calendarEditMode, calendarChangeDate, calendarSetDate, calendarToggleEditMode }) => {
-  if (!calendarEditMode) return null;
+export default class CalendarEdit extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className="calendar-edit-container">
-      <form onSubmit={e => {
-        e.preventDefault();
-        calendarSetDate(showDatesForDateTemp);
-      }}>
-        <Textfield type="date" floatingLabel value={showDatesForDateTemp} onChange={(e) => { calendarChangeDate(e.target.value) }} label="Date" autoFocus />
-        <Button raised accent type="submit">Save</Button>
-      </form>
-    </div>
-  );
+    this.state = {
+      date: new Date().toISOString().split('T')[0],
+    }
+  }
+
+  render() {
+    if (!this.props.calendarEditMode) return null;
+
+    return (
+      <div className="calendar-edit-container">
+        <form onSubmit={e => {
+          e.preventDefault();
+          this.props.calendarSetDate(this.state.date);
+        }}>
+          <Textfield type="date" floatingLabel value={this.state.date} onChange={(e) => { this.setState({ 'date': e.target.value }); }} label="Date" autoFocus />
+          <Button raised accent type="submit">Save</Button>
+        </form>
+      </div>
+    );
+  }
 }
-
-export default CalendarEdit;
