@@ -1,5 +1,4 @@
-const apiUrl = 'http://localhost:8081/lunchdate/date';
-const slackAPIUrl = '';
+import { backendApiUrl, slackApiUrl } from '../config';
 
 export const datesListStart = () => {
     return {
@@ -91,7 +90,7 @@ export const datesListAjaxGet = (date = new Date().toISOString().split('T')[0]) 
     return (dispatch) => {
         dispatch(datesListStart());
 
-        fetch(apiUrl + '/list?date=' + date)
+        fetch(backendApiUrl + '/date/list?date=' + date)
             .then((response) => response.json())
             .then((responseJson) => {
                 const dates = dispatch(datesUpdateList(responseJson));
@@ -107,7 +106,7 @@ export const datesCreateAjaxPost = (newDate) => {
     return (dispatch) => {
         dispatch(datesCreateBegin());
 
-        fetch(apiUrl + '/create', {
+        fetch(backendApiUrl + '/date/create', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -139,7 +138,7 @@ export const datesCreateSlackPost = (date) => {
     return () => {
         let text = `${date.user} created a date at ${date.date} ${date.time} a clock at ${date.place}`;
 
-        fetch(slackAPIUrl, {
+        fetch(slackApiUrl, {
             method: 'POST',
             body: JSON.stringify({ text: text }),
         });
@@ -150,7 +149,7 @@ export const datesRemoveAjaxPost = id => {
     return (dispatch) => {
         dispatch(datesRemoveStart());
 
-        fetch(apiUrl + '/remove', {
+        fetch(backendApiUrl + '/date/remove', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -176,7 +175,7 @@ export const datesAddParticipantAjaxPost = (dateId, name) => {
     return (dispatch) => {
         dispatch(datesAddParticipantStart());
 
-        fetch(apiUrl + '/addParticipant', {
+        fetch(backendApiUrl + '/date/addParticipant', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -203,7 +202,7 @@ export const datesRemoveParticipantAjaxPost = (dateId, name) => {
     return (dispatch) => {
         dispatch(datesRemoveParticipantStart());
 
-        fetch(apiUrl + '/removeParticipant', {
+        fetch(backendApiUrl + '/date/removeParticipant', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

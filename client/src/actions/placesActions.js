@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:8081/lunchdate/place';
+import { backendApiUrl } from '../config';
 
 export const placesListStart = () => {
     return {
@@ -83,7 +83,7 @@ export const placesUpdateList = (responseJson) => {
 export const placesListAjaxGet = (dispatch) => {
     dispatch(placesListStart());
 
-    fetch(apiUrl + '/list')
+    fetch(backendApiUrl + '/place/list')
         .then((response) => response.json())
         .then((responseJson) => {
             const places = dispatch(placesUpdateList(responseJson));
@@ -98,7 +98,7 @@ export const placesCreateAjaxPost = (newPlaceName) => {
     return (dispatch) => {
         dispatch(placesCreateBegin());
 
-        fetch(apiUrl + '/create', {
+        fetch(backendApiUrl + '/place/create', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -124,7 +124,7 @@ export const placesRemoveAjaxPost = id => {
     return (dispatch) => {
         dispatch(placesRemoveStart());
 
-        fetch(apiUrl + '/remove', {
+        fetch(backendApiUrl + '/place/remove', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -154,7 +154,7 @@ export const placesUploadLogoChange = (place, files) => {
             reader = new FileReader();
 
         reader.onloadend = function (theFile) {
-            fetch(apiUrl + '/uploadLogo', {
+            fetch(backendApiUrl + '/place/uploadLogo', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -179,6 +179,5 @@ export const placesUploadLogoChange = (place, files) => {
         };
 
         reader.readAsDataURL(file);
-
     };
 };
