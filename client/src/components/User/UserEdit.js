@@ -2,8 +2,6 @@ import React from 'react';
 import { Dialog, DialogContent, DialogActions, Textfield, Button } from 'react-mdl';
 
 const UserEdit = ({ user, editMode, newNameChange, userSetName, userSaveNameToLocalStorge, userEditNameChange, userToggleEditMode }) => {
-  if (!editMode) return null;
-
   return (
     <div className="user-edit-container">
       <form onSubmit={e => {

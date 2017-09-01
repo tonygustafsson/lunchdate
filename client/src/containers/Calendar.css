@@ -2,12 +2,3 @@
     float: right;
     margin-right: 2em;
 }
-
-.calendar-edit-container {
-    float: right;
-    color: #000;
-    background: rgba(255,255,255,.7);
-    padding: .5em;
-    text-shadow: 2px 1px 1px #000;
-    cursor: pointer;
-}

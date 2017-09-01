@@ -1,5 +1,5 @@
 import React from 'react';
-import { Textfield, Button } from 'react-mdl';
+import { Dialog, DialogContent, DialogActions, Textfield, Button } from 'react-mdl';
 
 export default class CalendarEdit extends React.Component {
   constructor(props) {
@@ -11,16 +11,20 @@ export default class CalendarEdit extends React.Component {
   }
 
   render() {
-    if (!this.props.calendarEditMode) return null;
-
     return (
       <div className="calendar-edit-container">
         <form onSubmit={e => {
           e.preventDefault();
           this.props.calendarSetDate(this.state.date);
         }}>
-          <Textfield type="date" floatingLabel value={this.state.date} onChange={(e) => { this.setState({ 'date': e.target.value }); }} label="Date" autoFocus />
-          <Button raised accent type="submit">Save</Button>
+          <Dialog open={this.props.calendarEditMode}>
+            <DialogContent>
+            <Textfield type="date" floatingLabel value={this.state.date} onChange={(e) => { this.setState({ 'date': e.target.value }); }} label="Date" autoFocus />
+            </DialogContent>
+            <DialogActions>
+            <Button raised accent type="submit">Save</Button>            
+            </DialogActions>
+          </Dialog>
         </form>
       </div>
     );
