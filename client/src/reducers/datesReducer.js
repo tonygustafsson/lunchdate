@@ -1,9 +1,6 @@
-const currentISODate = new Date().toISOString().split('T')[0];
-
 const initState = {
   list: [],
-  showDatesForDate: currentISODate,
-  showDatesForDateTemp: currentISODate,
+  showDatesForDate: new Date().toISOString().split('T')[0],
   calendarEditMode: false,
   loading: true,
   showNewDateForm: false,
@@ -14,23 +11,6 @@ const datesReducer = (state = initState, action) => {
   switch (action.type) {
     case 'DATES_LIST_DONE':
       return { ...state, loading: false, list: action.payload };
-    case 'DATES_CREATE_NEW_DATA_CHANGE':
-      switch (action.key) {
-        case 'date':
-          return { ...state, newDateData: { ...state.newDateData, date: action.payload } };
-        case 'time':
-          return { ...state, newDateData: { ...state.newDateData, time: action.payload } };
-        case 'user':
-          return { ...state, newDateData: { ...state.newDateData, user: action.payload } };
-        case 'place':
-          return { ...state, newDateData: { ...state.newDateData, place: action.payload } };
-        case 'takeAway':
-          return { ...state, newDateData: { ...state.newDateData, takeAway: action.payload } };
-        case 'note':
-          return { ...state, newDateData: { ...state.newDateData, note: action.payload } };
-        default:
-          return state;
-      }
     case 'DATES_SHOW_NEW_DATE_FORM':
       return { ...state, showNewDateForm: action.payload };
     case 'DATES_CREATE_START':
