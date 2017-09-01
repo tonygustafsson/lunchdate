@@ -20,8 +20,16 @@ const mapStateToProps = (state, ownProps) => {
 export const DatesListComponent = connect(
   mapStateToProps,
   (dispatch) => {
+    dispatch(datesListAjaxGet());
+    dispatch(placesListAjaxGet); 
+
+    setInterval(() => {
+      // Refresh page every minute
+      dispatch(datesListAjaxGet());
+      dispatch(placesListAjaxGet); 
+    }, 60000);
+
     return {
-      onLoad: (() => { dispatch(datesListAjaxGet()); dispatch(placesListAjaxGet); })(),
       datesRemoveAjaxPost: (id) => { dispatch(datesRemoveAjaxPost(id)) },
       datesShowNewDateForm: (showNewDateForm) => { dispatch(datesShowNewDateForm(showNewDateForm)); },
       datesAddParticipantAjaxPost: (dateId, name) => { dispatch(datesAddParticipantAjaxPost(dateId, name)); },
