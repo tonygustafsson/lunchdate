@@ -126,7 +126,7 @@ export const datesCreateAjaxPost = (newDate) => {
                 const dates = dispatch(datesUpdateList(responseJson));
                 dispatch(datesCreateDone());
                 dispatch(datesListDone(dates));
-                dispatch(datesCreateSlackPost(newDate));
+                //dispatch(datesCreateSlackPost(newDate));
             })
             .catch((error) => {
                 throw (error);
