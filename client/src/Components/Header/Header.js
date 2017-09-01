@@ -2,10 +2,6 @@ import React from 'react';
 import { Button, Icon } from 'react-mdl';
 
 export default class Header extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>

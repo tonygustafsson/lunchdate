@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { placesCreateAjaxPost, placesRemoveAjaxPost, placesCreateNewNameChange, placesToggleNewPlaceForm, placesUploadLogoChange } from '../actions';
+import { placesCreateAjaxPost, placesRemoveAjaxPost, placesToggleNewPlaceForm, placesUploadLogoChange } from '../actions';
 import PlacesList from '../components/Places/PlacesList';
 import PlaceCreate from '../components/Places/PlaceCreate';
 import './Places.css';
