@@ -26,7 +26,6 @@ export const DatesListComponent = connect(
     setInterval(() => {
       // Refresh page every minute
       dispatch(datesListAjaxGet());
-      dispatch(placesListAjaxGet); 
     }, 60000);
 
     return {
