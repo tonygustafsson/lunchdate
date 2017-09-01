@@ -6,17 +6,17 @@ import './User.css';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    user: state.user,
+    name: state.user.name,
     editMode: state.user.editMode,
-    newNameChange: state.user.newNameChange
   };
 };
 
 export const UserListComponent = connect(
   mapStateToProps,
   (dispatch) => {
+    dispatch(userGetNameFromLocalStorge());
+
     return {
-      onLoad: (() => { dispatch(userGetNameFromLocalStorge()); })(),
       userToggleEditMode: () => { dispatch(userToggleEditMode()); }
     };
   }

@@ -1,4 +1,5 @@
 const apiUrl = 'http://localhost:8081/lunchdate/date';
+const slackAPIUrl = '';
 
 export const datesListStart = () => {
     return {
@@ -126,12 +127,24 @@ export const datesCreateAjaxPost = (newDate) => {
                 const dates = dispatch(datesUpdateList(responseJson));
                 dispatch(datesCreateDone());
                 dispatch(datesListDone(dates));
+                dispatch(datesCreateSlackPost(newDate));
             })
             .catch((error) => {
                 throw (error);
             });
     };
 };
+
+export const datesCreateSlackPost = (date) => {
+    return () => {
+        let text = `${date.user} created a date at ${date.date} ${date.time} a clock at ${date.place}`;
+
+        fetch(slackAPIUrl, {
+            method: 'POST',
+            body: JSON.stringify({ text: text }),
+        });
+    }
+}
 
 export const datesRemoveAjaxPost = id => {
     return (dispatch) => {
