@@ -7,7 +7,6 @@ import './Calendar.css';
 const mapStateToProps = (state, ownProps) => {
   return {
     showDatesForDate: state.dates.showDatesForDate,
-    showDatesForDateTemp: state.dates.showDatesForDateTemp,
     calendarEditMode: state.dates.calendarEditMode
   };
 };
