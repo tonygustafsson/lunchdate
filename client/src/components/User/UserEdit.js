@@ -1,21 +1,32 @@
 import React from 'react';
 import { Textfield, Button } from 'react-mdl';
 
-const UserEdit = ({ user, editMode, newNameChange, userSetName, userSaveNameToLocalStorge, userEditNameChange, userToggleEditMode }) => {
-  if (!editMode) return null;
+export default class UserEdit extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className="user-edit-container">
-      <form onSubmit={e => {
-        e.preventDefault();
-        userSaveNameToLocalStorge(newNameChange);
-        userToggleEditMode();
-      }}>
-        <Textfield floatingLabel value={newNameChange} label="Name" autoFocus onChange={e => { userEditNameChange(e.target.value) }} />
-        <Button raised accent type="submit">Save</Button>
-      </form>
-    </div>
-  );
+    this.state = {
+      user: this.props.user.name,
+    };
+  }
+
+  submitData(e) {
+    e.preventDefault();
+    
+    this.props.userSaveNameToLocalStorge(this.props.newNameChange);
+    this.props.userToggleEditMode();
+  }
+
+  render() {
+    if (!this.props.editMode) return null;
+
+    return (
+      <div className="user-edit-container">
+        <form onSubmit={ e => this.submitData(e) }>
+          <Textfield floatingLabel value={this.state.user} label="Name" autoFocus onChange={e => { this.setState({ user: e.target.value }); }} />
+          <Button raised accent type="submit">Save</Button>
+        </form>
+      </div>
+    );
+  }
 }
-
-export default UserEdit;

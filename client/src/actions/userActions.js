@@ -5,13 +5,6 @@ export const userSetName = (name) => {
     };
 };
 
-export const userEditNameChange = (name) => {
-    return {
-        type: 'USER_EDIT_NEW_NAME_CHANGE',
-        payload: name
-    };
-};
-
 export const userToggleEditMode = () => {
     return {
         type: 'USER_TOGGLE_EDIT_MODE'

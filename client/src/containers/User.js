@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { userSaveNameToLocalStorge, userGetNameFromLocalStorge, userSetName, userEditNameChange, userToggleEditMode } from '../actions';
+import { userSaveNameToLocalStorge, userGetNameFromLocalStorge, userSetName, userToggleEditMode } from '../actions';
 import UserList from '../components/User/UserList';
 import UserEdit from '../components/User/UserEdit';
 import './User.css';
@@ -28,7 +28,6 @@ export const UserEditComponent = connect(
     return {
       userSetName: (name) => { dispatch(userSetName(name)); },
       userSaveNameToLocalStorge: (name) => { dispatch(userSaveNameToLocalStorge(name)); },
-      userEditNameChange: (name) => { dispatch(userEditNameChange(name)); },
       userToggleEditMode: () => { dispatch(userToggleEditMode()); }
     };
   }
