@@ -1,4 +1,4 @@
-import { backendApiUrl } from '../config';
+import { appConfig } from '../config';
 
 export const placesListStart = () => {
     return {
@@ -28,7 +28,7 @@ export const placesCreateBegin = () => {
 
 export const placesCreateDone = () => {
     return {
-        type: 'PLACES_CREATE_DONE',
+        type: 'PLACES_CREATE_DONE'
     };
 };
 
@@ -40,7 +40,7 @@ export const placesRemoveStart = () => {
 
 export const placesRemoveDone = () => {
     return {
-        type: 'PLACES_REMOVE_DONE',
+        type: 'PLACES_REMOVE_DONE'
     };
 };
 
@@ -58,114 +58,113 @@ export const placesUploadLogoDone = () => {
 
 export const placesToggleNewPlaceForm = () => {
     return {
-        type: 'PLACES_TOGGLE_NEW_PLACE_FORM',
+        type: 'PLACES_TOGGLE_NEW_PLACE_FORM'
     };
 };
 
-
-export const placesUpdateList = (responseJson) => {
+export const placesUpdateList = responseJson => {
     return () => {
         var places = [];
 
         responseJson.forEach(place => {
             places.push({
-                'key': place.id,
-                'name': place.name,
-                'imageUrl': place.imageUrl,
-                'identifier': place.identifier
+                key: place.id,
+                name: place.name,
+                imageUrl: place.imageUrl,
+                identifier: place.identifier
             });
         });
 
         return places;
-    }
+    };
 };
 
-export const placesListAjaxGet = (dispatch) => {
+export const placesListAjaxGet = dispatch => {
     dispatch(placesListStart());
 
-    fetch(backendApiUrl + '/place/list')
-        .then((response) => response.json())
-        .then((responseJson) => {
+    fetch(appConfig.backendApiUrl + '/place/list')
+        .then(response => response.json())
+        .then(responseJson => {
             const places = dispatch(placesUpdateList(responseJson));
             dispatch(placesListDone(places));
         })
-        .catch((error) => {
-            throw (error);
+        .catch(error => {
+            throw error;
         });
 };
 
-export const placesCreateAjaxPost = (newPlaceName) => {
-    return (dispatch) => {
+export const placesCreateAjaxPost = newPlaceName => {
+    return dispatch => {
         dispatch(placesCreateBegin());
 
-        fetch(backendApiUrl + '/place/create', {
+        fetch(appConfig.backendApiUrl + '/place/create', {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 name: newPlaceName
             })
         })
-            .then((response) => response.json())
-            .then((responseJson) => {
+            .then(response => response.json())
+            .then(responseJson => {
                 const places = dispatch(placesUpdateList(responseJson));
                 dispatch(placesCreateDone());
                 dispatch(placesListDone(places));
             })
-            .catch((error) => {
-                throw (error);
+            .catch(error => {
+                throw error;
             });
     };
 };
 
 export const placesRemoveAjaxPost = id => {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(placesRemoveStart());
 
-        fetch(backendApiUrl + '/place/remove', {
+        fetch(appConfig.backendApiUrl + '/place/remove', {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 id: id
             })
         })
-            .then((response) => response.json())
-            .then((responseJson) => {
+            .then(response => response.json())
+            .then(responseJson => {
                 const places = dispatch(placesUpdateList(responseJson));
                 dispatch(placesRemoveDone());
                 dispatch(placesListDone(places));
             })
-            .catch((error) => {
-                throw (error);
+            .catch(error => {
+                throw error;
             });
     };
 };
 
 export const placesUploadLogoChange = (place, files) => {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(placesUploadLogoStart());
 
         const file = files[0],
             reader = new FileReader();
 
-        reader.onloadend = function (theFile) {
-            fetch(backendApiUrl + '/place/uploadLogo', {
+        reader.onloadend = function(theFile) {
+            fetch(appConfig.backendApiUrl + '/place/uploadLogo', {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     placeIdentifier: place.identifier,
                     fileContent: reader.result
                 })
             })
-                .then((response) => {
+                .then(response => {
                     let random = Math.random(),
                         newImgPath = '/img/places/' + place.identifier + '.png?bust=' + random;
 
@@ -173,7 +172,7 @@ export const placesUploadLogoChange = (place, files) => {
 
                     dispatch(placesUploadLogoDone());
                 })
-                .catch((error) => {
+                .catch(error => {
                     throw error;
                 });
         };
